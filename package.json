@@ -1,0 +1,22 @@
+{
+  "name": "food-ordering-system",
+  "version": "1.0.0",
+  "description": "A food ordering system for food tech classes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LCordial/food-ordering-system.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LCordial/food-ordering-system/issues"
+  },
+  "homepage": "https://github.com/LCordial/food-ordering-system#readme",
+  "dependencies": {
+    "sass": "^1.52.3"
+  }
+}

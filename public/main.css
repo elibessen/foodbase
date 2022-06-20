@@ -1,3 +1,7 @@
 .hidden{
     display: none;
 }
+
+.nonclickable{
+    pointer-events: none;
+}

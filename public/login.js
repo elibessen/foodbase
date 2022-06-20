@@ -8,6 +8,8 @@ const btnSignIn = document.querySelector('#adminbutton');
 const btnSignOut = document.querySelector('#adminlogoutbutton');
 const btnSignUp = document.querySelector('#signup');
 const adminnavlogin = document.querySelector("#adminnavlogin");
+const page = document.querySelector("#page");
+
 
 var isClicked = false;
 
@@ -18,7 +20,7 @@ const db = firebase.firestore();
 
 const users = db.collection('users');
 
-loginpage.classList.add('hidden');
+loginpage.classList.remove('hidden');
 
 adminnavlogin.addEventListener('click', e => {
     if(isClicked === false){
@@ -71,6 +73,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnSignIn.classList.add('hidden');
         $("#loginerror").remove();
         $('#responsetext').append("<p class='text-success'> Successfully logged in </p>");
+        page.classList.remove('nonclickable');
          // Check user exists in db
         users.doc(auth.currentUser.uid).get().then((doc) => {
             if (doc.exists) { // User exists
@@ -91,6 +94,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         console.log('not logged in.');
         btnSignOut.classList.add('hidden')
         btnSignIn.classList.remove('hidden');
+        loginpage.classList.remove('hidden');
+        page.classList.add('nonclickable');
     }
 });
 

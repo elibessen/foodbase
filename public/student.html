@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ingredient ordering system</title>
+    
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" href="bootstrap.css" />
+        <link rel="stylesheet" href="main.css" />
+        <!-- Before working on this project, you need the config file. Ask Eli for it. -->
+        <script src="config.js">
+    
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Ingredient Orderer</a>  
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" id="studentnavlogin">Login/Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Return</a>
+                    </li>
+                </ul>
+            </div>
+          </nav>    
+          <div id="loginpage" >
+            <div class="d-flex justify-content-center" style="margin: 5%;">
+              <div class="bg-white" style="display: inline-block; padding: 4rem; border-radius: 0.9rem; padding-bottom: 5rem; border: 1px solid black">
+                <h4 style="text-align: center; padding-bottom: 2rem;">Student Login</h2>
+                <div class="d-flex flex-column">
+                  
+                  <p style="padding: 0rem; margin: 0rem;">Email</p>
+                  <input placeholder="Type your username" id="emailusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;">
+                  
+                  <!-- <p style="padding: 0rem; margin: 0rem;">Username</p>
+                  <input placeholder="Type your username" id="studentusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;"> -->
+    
+                  <p style="padding: 0rem; margin: 0rem; margin-top: 1rem;">Password</p>
+                  <input placeholder="Type your password" id="studentpassword" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;" type="password">
+            
+                  <button class="btn btn-primary" id="studentbutton" style="margin-top: 1.5rem;">Login</button>
+                  <button class="btn btn-outline-primary" id="studentlogoutbutton" style="margin-top: 1.5rem;">Logout</button>
+                  <!-- <button class="btn btn-outline-primary" id="signup">Sign up</button> -->
+                  <div id="responsetext">
+    
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div id="page">
+            <!-- Put the rest of the form here -->
+        </div>
+        <script src="studentlogin.js"></script>
+    </body>
+</html>

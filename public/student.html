@@ -21,19 +21,32 @@
         </script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Ingredient Orderer</a>  
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <img src="./img/bxs-baguette.svg" width="30" height="30" alt="">
+                <a class="navbar-brand" href="#">Ingredient Orderer</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" id="studentnavlogin">Login/Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Return</a>
+                        <a class="nav-link" href="./index.html" id="return">Return</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav">
+                    <span class="navbar-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    <span class="navbar-text" id="username">
+                    </span>
+                </ul>
+              </div>
             </div>
-          </nav>    
+          </nav> 
           <div id="loginpage" >
             <div class="d-flex justify-content-center" style="margin: 5%;">
               <div class="bg-white" style="display: inline-block; padding: 4rem; border-radius: 0.9rem; padding-bottom: 5rem; border: 1px solid black">
@@ -43,15 +56,15 @@
                   <p style="padding: 0rem; margin: 0rem;">Email</p>
                   <input placeholder="Type your username" id="emailusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;">
                   
-                  <p style="padding: 0rem; margin: 0rem;">Username</p>
-                  <input placeholder="Type your username" id="studentusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;">
+                  <!-- <p style="padding: 0rem; margin: 0rem;">Username</p>
+                  <input placeholder="Type your username" id="studentusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;"> -->
     
                   <p style="padding: 0rem; margin: 0rem; margin-top: 1rem;">Password</p>
                   <input placeholder="Type your password" id="studentpassword" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;" type="password">
             
                   <button class="btn btn-primary" id="studentbutton" style="margin-top: 1.5rem;">Login</button>
                   <button class="btn btn-outline-primary" id="studentlogoutbutton" style="margin-top: 1.5rem;">Logout</button>
-                  <button class="btn btn-outline-primary" id="signup">Sign up</button>
+                  <!-- <button class="btn btn-outline-primary" id="signup">Sign up</button> -->
                   <div id="responsetext">
     
                   </div>

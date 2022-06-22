@@ -16,24 +16,35 @@
         <link rel="stylesheet" href="bootstrap.css" />
         <link rel="stylesheet" href="main.css" />
         <!-- Before working on this project, you need the config file. Ask Eli for it. -->
-        <script src="config.js">
-    
-        </script>
+        <script src="config.js"></script>
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Ingredient Orderer</a>  
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+    <body>   
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <img src="./img/bxs-baguette.svg" width="30" height="30" alt="">
+                <a class="navbar-brand" href="#">Ingredient Orderer</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" id="adminnavlogin">Login/Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Return</a>
+                        <a class="nav-link" href="./index.html" id="return">Return</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav">
+                    <span class="navbar-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    <span class="navbar-text" id="username">
+                    </span>
+                </ul>
+              </div>
             </div>
-          </nav>    
+          </nav> 
           <div id="loginpage" >
             <div class="d-flex justify-content-center" style="margin: 5%;">
               <div class="bg-white" style="display: inline-block; padding: 4rem; border-radius: 0.9rem; padding-bottom: 5rem; border: 1px solid black">

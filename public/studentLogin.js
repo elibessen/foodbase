@@ -7,8 +7,11 @@ const txtUsername = document.querySelector('#studentusername');
 const btnSignIn = document.querySelector('#studentbutton');
 const btnSignOut = document.querySelector('#studentlogoutbutton');
 const btnSignUp = document.querySelector('#signup');
-const adminnavlogin = document.querySelector("#studentnavlogin");
+const studentnavlogin = document.querySelector("#studentnavlogin");
 const page = document.querySelector("#page");
+const username = document.querySelector("#username");
+
+const returnButton = document.querySelector("#return")
 
 var isClicked = false;
 
@@ -21,7 +24,7 @@ const students = db.collection('students');
 
 loginpage.classList.remove('hidden');
 
-adminnavlogin.addEventListener('click', e => {
+studentnavlogin.addEventListener('click', e => {
     if(isClicked === false){
         loginpage.classList.remove('hidden');
         isClicked = true;
@@ -40,14 +43,14 @@ btnSignIn.addEventListener('click', e => {
     promise.catch(e => errorlogin(e));
 });
 
-btnSignUp.addEventListener('click', e => {
-    // TODO: Check for real email.
-    let email = txtEmail.value;
-    let password = txtPassword.value;
+// btnSignUp.addEventListener('click', e => {
+//     // TODO: Check for real email.
+//     let email = txtEmail.value;
+//     let password = txtPassword.value;
 
-    const promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-});
+//     const promise = auth.createUserWithEmailAndPassword(email, password);
+//     promise.catch(e => console.log(e.message));
+// });
 
 
 function errorlogin(e){
@@ -58,6 +61,12 @@ function errorlogin(e){
 
 // Sign out current user
 btnSignOut.addEventListener('click', e => {
+    firebase.auth().signOut();
+    location.reload();
+    console.log("Logged out");
+});
+
+returnButton.addEventListener('click', e => {
     firebase.auth().signOut();
     location.reload();
     console.log("Logged out");
@@ -74,10 +83,11 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $('#responsetext').append("<p class='text-success'> Successfully logged in </p>");
         page.classList.remove('nonclickable');
          // Check user exists in db
-         students.doc(auth.currentUser.uid).get().then((doc) => {
+        students.doc(auth.currentUser.uid).get().then((doc) => {
             if (doc.exists) { // User exists
                 console.log("Document data:", doc.data());
                 btnSignOut.classList.remove('hidden');
+                fetchUsername();
             } else { // Add user data to db
                 console.log("No such document!");
                 writeUserToDB();
@@ -116,3 +126,15 @@ function writeUserToDB() {
             console.error("Error writing document: ", error);
         });
 };
+
+function fetchUsername(){
+    students.doc(auth.currentUser.uid).get().then((doc) => {
+        if(doc.exists) {
+            console.log(doc.data().username, doc.data().yearLevel);
+            username.innerHTML = doc.data().username.toUpperCase() + ', YEAR ' + doc.data().yearLevel
+        } else {
+            console.log("Username doesn't exist");
+            username.innerHTML = 'Hey, you do not exist'
+        }
+    })
+}

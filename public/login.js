@@ -10,6 +10,7 @@ const btnSignUp = document.querySelector('#signup');
 const adminnavlogin = document.querySelector("#adminnavlogin");
 const page = document.querySelector("#page");
 
+const returnButton = document.querySelector("#return");
 
 var isClicked = false;
 
@@ -64,6 +65,12 @@ btnSignOut.addEventListener('click', e => {
     console.log("Logged out");
 });
 
+returnButton.addEventListener('click', e => {
+    firebase.auth().signOut();
+    location.reload();
+    console.log("Logged out");
+});
+
 // Detect when auth state changes
 firebase.auth().onAuthStateChanged(firebaseUser => {
     // If signed in
@@ -79,6 +86,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             if (doc.exists) { // User exists
                 console.log("Document data:", doc.data());
                 btnSignOut.classList.remove('hidden');
+                fetchUsername()
             } else { // Add user data to db
                 console.log("No such document!");
                 writeUserToDB();
@@ -117,3 +125,15 @@ function writeUserToDB() {
             console.error("Error writing document: ", error);
         });
 };
+
+function fetchUsername(){
+    users.doc(auth.currentUser.uid).get().then((doc) => {
+        if(doc.exists) {
+            console.log(doc.data().username);
+            username.innerHTML = doc.data().username.toUpperCase() + ', ADMIN'
+        } else {
+            console.log("Username doesn't exist");
+            username.innerHTML = 'Hey, you do not exist'
+        }
+    })
+}

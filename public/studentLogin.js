@@ -118,7 +118,8 @@ function writeUserToDB() {
     students.doc(uid).set({ // Write to db
             username: username,
             uid: uid,
-            email: email
+            email: email,
+            yearLevel: '0',
         })
         .then(() => { // If success
             console.log("Document successfully written!");

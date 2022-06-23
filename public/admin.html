@@ -15,6 +15,7 @@
     
         <link rel="stylesheet" href="bootstrap.css" />
         <link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" type="text/css" href="admin.css"/>
         <!-- Before working on this project, you need the config file. Ask Eli for it. -->
         <script src="config.js"></script>
         <script src="admin.js"></script>
@@ -72,11 +73,21 @@
           </div>
         </div>
         <div id="page">
-          <p id ='admintest'></p>
-          <div id="sidebuttons">
-            <div>
+          <div class="sidebar" width = 100px>
+            <br></br>
+            <button class="sidebutton">Shopping list</button>
+            <button class="sidebutton">Student Orders</button>
+            <button class="sidebutton">Edit Orders</button>
+            <button class="sidebutton">Add Order</button>
+            <button class="sidebutton">Edit Ingredient Lists</button>
+            <button class="sidebutton">Edit Ingredients</button>
+            
+          </div>
+          <div id = maincontent>
+            <p id ='admintest'></p>
+          </div>
+          <div id = "rightcontent">
 
-            </div>
           </div>
         </div>
         <script src="adminLogin.js"></script>

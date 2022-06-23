@@ -1,0 +1,42 @@
+
+#page
+{
+    /*display:none*/
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: left;
+    height: 92.55%;
+    width: 100%;
+}
+.sidebar
+{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 250px;
+    background-color: lightgray;
+    height: 100%;
+    
+
+
+}
+.sidebutton
+{
+    border-width: 2px;
+    width: 250px;
+    height: 75px;
+    font-size: larger;
+}
+#maincontent
+{
+    width: 100%;
+    height: 100%;
+}
+#rightcontent
+{
+    background-color: lightgray;
+    width: 200px;
+    height: 100%
+}

@@ -87,6 +87,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 console.log("Document data:", doc.data());
                 btnSignOut.classList.remove('hidden');
                 fetchUsername()
+                adminOnload()
             } else { // Add user data to db
                 console.log("No such document!");
                 writeUserToDB();

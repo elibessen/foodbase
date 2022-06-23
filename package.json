@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LCordial/food-ordering-system#readme",
   "dependencies": {
+    "puppeteer": "^14.4.1",
     "sass": "^1.52.3"
   }
 }

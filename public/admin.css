@@ -1,8 +1,8 @@
 
 #page
 {
-    /*display:none*/
-    display: flex;
+    display:none;
+    /*display: flex;*/
     flex-direction: row;
     align-items: left;
     justify-content: left;
@@ -31,7 +31,7 @@
 }
 #maincontent
 {
-    width: 100%;
+    width: 67%;
     height: 100%;
 }
 #rightcontent
@@ -39,4 +39,28 @@
     background-color: lightgray;
     width: 200px;
     height: 100%
+}
+#shoppingListCont
+{
+    display:block;
+}
+#studentOrdersCont
+{
+    display:none;
+}
+#editOrdersCont
+{
+    display:none;
+}
+#addOrderCont
+{
+    display:none;
+}
+#editIListsCont
+{
+    display:none;
+}
+#editIngredientsCont
+{
+    display:none;
 }

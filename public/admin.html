@@ -75,16 +75,33 @@
         <div id="page">
           <div class="sidebar" width = 100px>
             <br></br>
-            <button class="sidebutton">Shopping list</button>
-            <button class="sidebutton">Student Orders</button>
-            <button class="sidebutton">Edit Orders</button>
-            <button class="sidebutton">Add Order</button>
-            <button class="sidebutton">Edit Ingredient Lists</button>
-            <button class="sidebutton">Edit Ingredients</button>
+            <button class="sidebutton" onclick="changepage('shoppingListCont')">Shopping list</button>
+            <button class="sidebutton" onclick="changepage('studentOrdersCont')">Student Orders</button>
+            <button class="sidebutton" onclick="changepage('editOrdersCont')">Edit Orders</button>
+            <button class="sidebutton" onclick="changepage('addOrderCont')">Add Order</button>
+            <button class="sidebutton" onclick="changepage('editIListsCont')">Edit Ingredient Lists</button>
+            <button class="sidebutton" onclick="changepage('editIngredientsCont')">Edit Ingredients</button>
             
           </div>
           <div id = maincontent>
-            <p id ='admintest'></p>
+            <div id="shoppingListCont">
+                <p>a</p>
+            </div>
+            <div id="studentOrdersCont">
+              <p>b</p>
+            </div>
+            <div id="editOrdersCont">
+              <p>c</p>
+            </div>
+            <div id="addOrderCont">
+              <p>d</p>
+            </div>
+            <div id="editIListsCont">
+              <p>e</p>
+            </div>
+            <div id="editIngredientsCont">
+              <p>f</p>
+            </div>
           </div>
           <div id = "rightcontent">
 

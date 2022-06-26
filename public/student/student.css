@@ -1,5 +1,24 @@
 /* CSS goes into here */
 
 body {
-    color: black;
+color: black;
 }
+
+#itemSearch{
+    padding: 0.5rem 1rem;
+    width: 30vw;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.dropdown-content{
+    border: 1px solid black;
+    border-radius: 0.2rem;
+}
+
+#dropdown-element{
+    font-size: 1rem;
+}
+#dropdown-element:hover{
+    background-color: rgb(238, 238, 238);
+}   

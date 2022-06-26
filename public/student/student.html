@@ -15,6 +15,7 @@
     
         <link rel="stylesheet" href="../bootstrap.css" />
         <link rel="stylesheet" href="../main.css" />
+        <link rel="stylesheet" href="./student.css">
         <!-- Before working on this project, you need the config file. Ask Eli for it. -->
         <script src="../config.js"></script>
         <script src="student.js"></script>
@@ -33,7 +34,7 @@
                         <a class="nav-link" id="studentnavlogin"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.html" id="return">Return</a>
+                        <a class="nav-link" href="../index.html" id="return">Return</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -71,8 +72,21 @@
             </div>
           </div>
         </div>
-        <div id="page">
-            <p id = "testowo"></p>
+        <div id="page" class="d-flex flex-row" style="gap: 1rem;">
+          <div id="shopping-cart">
+            <h2>Shopping cart</h2>
+            <ul id="shopping-items">
+
+            </ul>
+          </div>
+          <div class="dropdown" style="display: inline-block">
+            <div id="searchableDropdown" class="dropdown-content">
+              <input type="text" placeholder="Search for item" id="itemSearch" onkeyup="filter()">
+              <div class="d-flex flex-column" id="dropdown-items">
+                
+              </div>
+            </div>
+          </div>
             <!-- Put the rest of the form here -->
 
         </div>

@@ -33,6 +33,7 @@
 {
     width: 67%;
     height: 100%;
+    overflow:auto
 }
 #rightcontent
 {
@@ -64,3 +65,27 @@
 {
     display:none;
 }
+#addIngBox
+{
+    border-style:solid;
+    border-color: black;
+    margin:10px;
+    padding: 10px;
+
+}
+div.cflex
+{
+	display:flex;
+	flex-direction:column;
+}
+div.rflex
+{
+	display:flex;
+	flex-direction:row;
+}
+div.flexcenter
+{
+	align-items: center;
+    	justify-content: center;
+}
+

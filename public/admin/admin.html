@@ -100,7 +100,20 @@
               <p>e</p>
             </div>
             <div id="editIngredientsCont">
-              <p>f</p>
+              <div class = "rflex">
+                <h1>Ingredients</h1>
+                <div id="addIngBox" class = "cflex">
+                  Name:<input id = "ingName"></input>
+                  Category:<input id = "ingCat"></input>
+                  Measurment:<select id = "ingMtype">
+                    <option>count</option>
+                    <option>volume</option>
+                    <option>weight</option>
+                  </select>
+                  <button onclick="AddIngredient()">Add Ingredient</button>
+                </div>
+              </div>
+              <div id="ingredientTable"></div>
             </div>
           </div>
           <div id = "rightcontent">

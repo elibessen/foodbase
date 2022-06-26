@@ -88,4 +88,28 @@ div.flexcenter
 	align-items: center;
     	justify-content: center;
 }
+td,th
+{
+	border-style:solid;
+	border-width:2px;
+	border-color:black;
+}
+table
+{
+	border-collapse:collapse;
+}
+.delicon
+{
+    width: 20px;
+    height:20px;
+}
+.deltable
+{
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+
+}
+
+
 

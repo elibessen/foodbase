@@ -1,14 +1,14 @@
-var currentpage="shoppingListCont";
-var pagarray = [];
+var currentpage="shoppingListCont";//variable stores what is shown in maincontent currently
+var pagarray = [];//array of elements that are toggled by side buttons
 var ingredients = [];
-//for ingredient edit
 
+//values for ingredient edit
 var dropdown_ingMtype;
 var dropdown_ingCat;
 var dropdown_ingName;
 var ingredientTable;
 var firstEditIngredientLoad = true;
-//
+
 function removeElementsByClass(className){
    const elements = document.getElementsByClassName(className);
    while(elements.length > 0){
@@ -21,6 +21,8 @@ function adminOnload()
    var page = document.getElementById("page");
    console.log(page.style.display)
    page.style.display = "flex";
+
+   //adding the elements that fill maincontent to the pagarray
    pagarray["shoppingListCont"] = document.getElementById("shoppingListCont");
    pagarray["studentOrdersCont"] = document.getElementById("studentOrdersCont");
    pagarray["editOrdersCont"] = document.getElementById("editOrdersCont");
@@ -33,27 +35,17 @@ function adminOnload()
    dropdown_ingName = document.getElementById("ingName");
    dropdown_ingMtype = document.getElementById("ingMtype");
    ingredientTable = document.getElementById("ingredientTable");
-   //ingredients[i].ingredientName);});
    updateIngredients();
-   makeIngredientTable();
 
 }
 
+
+//changes the content of maincontent
 function changepage(newpage)
 {
 
    pagarray[currentpage].style.display = "none";
    currentpage = newpage;
    pagarray[currentpage].style.display = "block";
-   switch (currentpage)
-   {
-      case "editIngredientsCont":
-         if (firstEditIngredientLoad)
-         {
-            firstEditIngredientLoad = !firstEditIngredientLoad;
-            makeIngredientTable();
-         }
-         break;
-   }
 }
 

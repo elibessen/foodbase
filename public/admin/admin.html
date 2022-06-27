@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="admin.css"/>
         <!-- Before working on this project, you need the config file. Ask Eli for it. -->
         <script src="../config.js"></script>
+        <script src="editIngredients.js"></script>
         <script src="admin.js"></script>
     </head>
     <body>   
@@ -109,7 +110,20 @@
                 </div>
                 <div id="addIngBox" class = "cflex">
                   Name:<input id = "ingName"></input>
-                  Category:<input id = "ingCat"></input>
+                  Category:<select id = "ingCat">
+                  <option>Meat</option>
+                  <option>Fish</option>
+                  <option>Seafood</option>
+                  <option>Dairy & Eggs</option>
+                  <option>Fresh Vegetables</option>
+                  <option>Fresh Fruit</option>
+                  <option>Fresh Herbs/Spices</option>
+                  <option>Dried Herbs/Spices</option>
+                  <option>Fresh Bread</option>
+                  <option>Groceries</option>
+                  <option>Frozen Foods</option>
+                  <option>Misc.</option>
+                </select>
                   Measurment:<select id = "ingMtype">
                     <option>count</option>
                     <option>volume</option>

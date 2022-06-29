@@ -75,8 +75,8 @@
           <div id="page" class="d-flex flex-row" style="gap: 1rem;">
             <div id="shopping-cart">
               <h2>Shopping cart</h2>
+              <input placeholder="Enter prac date..." id="pracDate" type="date">
               <ul id="shopping-items">
-  
               </ul>
             </div>
             <div class="dropdown" style="display: inline-block">
@@ -87,14 +87,9 @@
                 </div>
               </div>
             </div>
-            <div id="quantity">
-              <input id="volume" placeholder="Enter your volume...">
-              <input id="count" placeholder="Enter your count...">
-              <input id="weight" placeholder="Enter your weight...">
-            </div>
               <!-- Put the rest of the form here -->
           </div>
-          <button class="btn btn-primary">Submit Order</button>
+          <button class="btn btn-primary" onclick="submitOrder()">Submit Order</button>
         </div>
     </body>
     <script src="studentLogin.js"></script>

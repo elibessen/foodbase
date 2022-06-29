@@ -6,12 +6,6 @@ var orderNum;
 
 const orders = db.collection('orders');
 
-volume.classList.add('hidden');
-weight.classList.add('hidden');
-count.classList.add('hidden');
-
-
-
 function studentOnLoad()
 {
     // Gets all the documents in the collection
@@ -70,61 +64,75 @@ function filter() {
   }
 
 function addToCart(element){
-    const svg = '<svg style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
+    console.log(orderNum.num);
+    const svg = '<svg onclick=removeFromCart(this) style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
     var info = [element.textContent, element.getAttribute("data-category-type"), element.getAttribute("data-measurement-type")]
-    switch (info[2]){
-        case 'count':
-            count.classList.remove('hidden');
-            volume.classList.add('hidden');
-            weight.classList.add('hidden');
-            console.log("Count");
-            break;
-        case 'volume':
-            volume.classList.remove('hidden');
-            count.classList.add('hidden');
-            weight.classList.add('hidden');
-            console.log("Volume");
-            break;
-        case 'weight':
-            weight.classList.remove('hidden');
-            volume.classList.add('hidden');
-            count.classList.add('hidden');
-            console.log("Weight");
-            break;
-        default:
-            console.log("That measurement type doesn't exist")
-    }
-    // volume.classList.add('hidden');
-    // weight.classList.add('hidden');
-    // count.classList.add('hidden');
     items.push(info);
     console.log("Ingredients", items);
     ingredientNum++;
-    if($("#shopping-items").children() === 0){ // This is just a fail safe just in case something doesn't work
-        console.log("No ingredients in shopping cart!");
-        ingredientNum = 0;
-    } else {
-        $("#shopping-items").append('<li onclick=removeFromCart(this) id='+ ingredientNum +'>' + info[0] + svg + '</li>');
+    switch(info[2]){
+        case 'weight':
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
+            break;
+        case 'volume':
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
+            break;
+        default:
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
     }
-    // orders.doc("orders")
 }
+
+
 
 function removeFromCart(element){
     // console.log("Amount of orders: ", orderNum);
-    const svg = '<svg style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
-    console.log("id", $(element).attr('id'))
+    console.log($(element).parent());
+    const svg = '<svg onclick=removeFromCart(this) style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
+    console.log("id", $(element).parent().attr('id'))
     items.splice($(element).attr('id'), 1);
     $("#shopping-items").empty();
     ingredientNum = -1;
     for(var i=0; i < items.length; i++){
         ingredientNum++;
-        $("#shopping-items").append('<li onclick=removeFromCart(this) id='+ ingredientNum +'>' + items[i][0] + svg + '</li>');
+        switch(items[i][2]){
+            case 'weight':
+                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
+                break;
+            case 'volume':
+                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
+                break;
+            default:
+                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
+        }
     }
     console.log(items);
-    $(element).remove();
+    $(element).parent().remove();
 }
 
+function updateQuantity(input){
+    // console.log($(input).parent().attr('id'));
+    var id = $(input).parent().attr('id');
+    var arrayToBePushed = items[id]
+    arrayToBePushed.splice(3, 1);
+    arrayToBePushed.push($(input).val());
+    console.log(items);
+}
 
 function submitOrder(){
+    var pracDate = $("#pracDate").val();
+    orderNum.num++;
+    console.log(auth.currentUser.uid);
+    orders.doc("Order" + orderNum.num).set({
+        uid: auth.currentUser.uid,
+        pracDate: pracDate,
+    });
+    for(var i=0; i < items.length; i++){
+        console.log(items[i]);
+        orders.doc("Order" + orderNum.num).collection('ingredients').doc(items[i][0]).set({
+            "category": items[i][1],
+            "measurementType": items[i][2],
+            "quantity": items[i][3],
+        })
+    };
     
 }

@@ -11,11 +11,17 @@ const orders = db.collection('orders');
 
 // Making the 'order submitted' text hide
 document.querySelector('#buffer').style.display = 'none';
+// Making the page hidden before use, stops people from ordering without logging in
+document.querySelector("#form-content").style.display = 'none'
 
 // This function only runs when the user has logged in
 
 function studentOnLoad()
 {
+
+    // When the student login, the page content with be shown
+   document.querySelector("#form-content").style.display = ''
+
     // Gets all the documents in the collection
     // Gets each ingredient and its associated fields
     // The data from the database gets sorted into an object
@@ -155,6 +161,10 @@ function updateQuantity(input){
 // This function is only ran when the use clicks the submit order button.
 
 function submitOrder(){
+    // Before fully submitting the order, I check if the order number has changed after the app has loaded
+    orders.doc("OrderAmount").get().then((doc) => {
+        orderNum = doc.data();
+    })
     // These three variables gets the value of the input fields
     var pracDate = $("#pracDate").val();
     var pracTitle = $("#pracTitle").val()

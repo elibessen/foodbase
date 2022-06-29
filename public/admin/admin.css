@@ -61,16 +61,25 @@
 {
     display:none;
 }
+    #addIngListBox
+    {
+        margin-bottom:0px;
+        display:flex;
+    }
+
 #editIngredientsCont
 {
     display:none;
 }
-#addIngBox
+
+.enterBox
 {
     border-style:solid;
     border-color: black;
     margin:10px;
     padding: 10px;
+    width: min-content;
+    height: min-content;
 
 }
 div.cflex
@@ -108,7 +117,12 @@ table
     border-right: none;
     border-top: none;
     border-bottom: none;
+}
 
+.ciSpan::after
+{
+    content: "\a";
+    white-space: pre;
 }
 
 

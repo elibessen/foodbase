@@ -9,6 +9,26 @@ var dropdown_ingName;
 var ingredientTable;
 var firstEditIngredientLoad = true;
 
+//values for ingredient list edit
+var dropdown_ingList;
+var input_ingAmount;
+var ingListCont;
+var currentIlist = [];
+var currentIvalues = [];
+
+function getAmountUnit(ingred)
+{
+   switch(ingred.information.measurementType)
+   {
+      case "volume":
+         return "mL"
+      case "weight":
+         return "g";
+      default:
+         return "";
+   }
+}
+
 function removeElementsByClass(className){
    const elements = document.getElementsByClassName(className);
    while(elements.length > 0){
@@ -35,7 +55,17 @@ function adminOnload()
    dropdown_ingName = document.getElementById("ingName");
    dropdown_ingMtype = document.getElementById("ingMtype");
    ingredientTable = document.getElementById("ingredientTable");
+  
+
+   //for ingredient list edit
+
+   dropdown_ingList = document.getElementById("ingListDropdown");
+   input_ingAmount = document.getElementById("ingListAmount");
+   ingListCont = document.getElementById("ingListCont");
+
+   //Database Events
    updateIngredients();
+   //updateIngredientLists();
 
 }
 

@@ -19,6 +19,8 @@
         <!-- Before working on this project, you need the config file. Ask Eli for it. -->
         <script src="../config.js"></script>
         <script src="editIngredients.js"></script>
+        <script src="editIngredientLists.js"></script>
+        <script src="dbevents.js"></script>
         <script src="admin.js"></script>
     </head>
     <body>   
@@ -98,7 +100,26 @@
               <p>d</p>
             </div>
             <div id="editIListsCont">
-              <p>e</p>
+              <h1>Ingredient lists</h1>
+              <div class = "rflex">
+                <div class = "cflex">
+                    <div id="addIngListBox" class = "enterBox">
+                      <div class = "cflex">
+                        Ingredient:<select id = "ingListDropdown">
+
+                        </select>
+                        Amount:<input type = "number" id="ingListAmount">
+                        <button onclick="AddToIngredientList()">Add Ingredient to List</button>
+                      </div>
+                    </div>
+                    <div id="currentList" class="enterBox">
+                      <h5>Current List:</h5>
+                      Name:<input id="ingListName"></input>
+                      <div id="ingListCont"></div>
+                      <button onclick="AddIngredientList()">Add List</button>
+                    </div>
+                </div>
+              </div>
             </div>
             <div id="editIngredientsCont">
               <div class = "rflex">
@@ -108,7 +129,7 @@
                     <tr><th>Name</th><th>Category</th><th>Measurement</th></tr>
                   </table>
                 </div>
-                <div id="addIngBox" class = "cflex">
+                <div id="addIngBox" class = "cflex enterBox">
                   Name:<input id = "ingName"></input>
                   Category:<select id = "ingCat">
                   <option>Meat</option>
@@ -122,6 +143,7 @@
                   <option>Fresh Bread</option>
                   <option>Groceries</option>
                   <option>Frozen Foods</option>
+                  <option>Equipment</option>
                   <option>Misc.</option>
                 </select>
                   Measurment:<select id = "ingMtype">

@@ -22,3 +22,7 @@ color: black;
 #dropdown-element:hover{
     background-color: rgb(238, 238, 238);
 }   
+
+.hidden{
+    display: none;
+}

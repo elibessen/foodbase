@@ -48,6 +48,6 @@ firebase.initializeApp(firebaseConfig);
 If there are any issues, use [the issue page](https://github.com/LCordial/food-ordering-system/issues).
 
 ## License
-Copyright (c) 2022 Eli B
+Copyright (c) 2022 Eli B, Phoenexus22
 
 Licensed under the [MIT License](https://github.com/LCordial/food-ordering-system/blob/main/LICENSE.md).

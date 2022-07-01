@@ -93,9 +93,10 @@ function filter() {
 function addToCart(element){
     console.log(orderNum.num);
     const svg = '<svg onclick=removeFromCart(this) style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
-    var info = [element.textContent, element.getAttribute("data-category-type"), element.getAttribute("data-measurement-type")]
+    var info = [element.textContent, element.getAttribute("data-category-type"), element.getAttribute("data-measurement-type")];
+    console.log(info);
     items.push(info); // Pushes the info from the ingredient into another array, for easier processign
-    console.log("Ingredients", items);
+    console.log("Item list:", items);
     // Increases the amount of ingredients by 1
     ingredientNum++;
     // Checks whether the measurement type is weight, volume or neither, then it appends a list item to the list 
@@ -140,7 +141,7 @@ function removeFromCart(element){
                 $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
         }
     }
-    console.log(items);
+    console.log("Item list:", items);
     $(element).parent().remove();
 }
 
@@ -156,6 +157,35 @@ function updateQuantity(input){
     // Pushes the value of the quantity into the array
     arrayToBePushed.push($(input).val());
     console.log(items);
+}
+
+// This function allows the user to add misc items to their shopping cart
+
+function addMiscItem(){
+    const svg = '<svg onclick=removeFromCart(this) style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
+    var name = $("#misc-name").val();
+    var measurementType = $("#misc-measurementType").val();
+    var category = $("#misc-category").val();
+
+    var info = [name, measurementType, category];
+
+    items.push(info);
+
+    ingredientNum++;
+
+    console.log("Added misc item:", info);
+    console.log("Item list:", items)
+
+    switch(info[2]){
+        case 'weight':
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
+            break;
+        case 'volume':
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
+            break;
+        default:
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
+    }
 }
 
 // This function is only ran when the use clicks the submit order button.

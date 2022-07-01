@@ -58,9 +58,7 @@ function studentOnLoad()
             // console.log(ingredients[i].information['category']);
             $("#dropdown-items").append("<a id='dropdown-element' onclick='addToCart(this)' data-category-type=" + `${ingredients[i].information['category']}` + " data-measurement-type=" + ingredients[i].information['measurementType'] + ">" + ingredients[i].ingredientName + svg + "</a>");
         }
-    };
-
-
+    };  
 }
 
 // Gets the number of orders from the database
@@ -115,8 +113,6 @@ function addToCart(element){
 // This function removes ingredients from the user when they click on the minus symbol
 
 function removeFromCart(element){
-    // console.log("Amount of orders: ", orderNum);
-    console.log($(element).parent());
     const svg = '<svg onclick=removeFromCart(this) style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
     console.log("id", $(element).parent().attr('id'))
     // This is why the ingredientNum from addToCart() is important
@@ -163,20 +159,25 @@ function updateQuantity(input){
 
 function addMiscItem(){
     const svg = '<svg onclick=removeFromCart(this) style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M7 11h10v2H7z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
+    // Grabs the value of the inputs when the submit button has been clicked by the user
     var name = $("#misc-name").val();
     var measurementType = $("#misc-measurementType").val();
     var category = $("#misc-category").val();
 
+    // Puts each variable into an array
     var info = [name, measurementType, category];
 
+    // Pushes the array into the items list
     items.push(info);
 
+    // Increases ingredientsNum by one
     ingredientNum++;
 
     console.log("Added misc item:", info);
     console.log("Item list:", items)
 
-    switch(info[2]){
+    // Checks whether the measurement tpye is weight, volume or neither 
+    switch(info[1]){
         case 'weight':
             $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
             break;

@@ -38,3 +38,21 @@ function makeCurrentIngredientList()
     }
 
 }
+function AddIngredientList()
+{
+    let temparray = [];
+    for (i = 0; i < currentIlist.length; i++)
+    {
+        temparray.push(ingredients[currentIlist[i]]);
+    }
+    db.collection("ingredientLists").doc(input_ingListName.value).set({
+        ingredients: temparray,
+        amounts: currentIvalues
+     })
+     .then(() => {
+        console.log("Document successfully written!");
+     })
+     .catch((error) => {
+        console.error("Error writing document: ", error);
+     });
+}

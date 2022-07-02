@@ -12,6 +12,7 @@ var firstEditIngredientLoad = true;
 //values for ingredient list edit
 var dropdown_ingList;
 var input_ingAmount;
+var input_ingListName;
 var ingListCont;
 var currentIlist = [];
 var currentIvalues = [];
@@ -62,6 +63,7 @@ function adminOnload()
    dropdown_ingList = document.getElementById("ingListDropdown");
    input_ingAmount = document.getElementById("ingListAmount");
    ingListCont = document.getElementById("ingListCont");
+   input_ingListName = document.getElementById("ingListName");
 
    //Database Events
    updateIngredients();

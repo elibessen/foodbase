@@ -1,6 +1,7 @@
 var currentpage="shoppingListCont";//variable stores what is shown in maincontent currently
 var pagarray = [];//array of elements that are toggled by side buttons
 var ingredients = [];
+var ingredientLists = [];
 
 //values for ingredient edit
 var dropdown_ingMtype;
@@ -16,6 +17,7 @@ var input_ingListName;
 var ingListCont;
 var currentIlist = [];
 var currentIvalues = [];
+var fullIngListCont;
 
 function getAmountUnit(ingred)
 {
@@ -64,10 +66,11 @@ function adminOnload()
    input_ingAmount = document.getElementById("ingListAmount");
    ingListCont = document.getElementById("ingListCont");
    input_ingListName = document.getElementById("ingListName");
+   fullIngListCont = document.getElementById("fullIngListCont");
 
    //Database Events
    updateIngredients();
-   //updateIngredientLists();
+   updateIngredientLists();
 
 }
 

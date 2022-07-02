@@ -40,5 +40,7 @@ function updateIngredientLists()
           ingredientLists.push(object);//adding all documents into ingredients[]
           
       })
+      displayIngredientLists()
     })
+    console.log(ingredientLists);
 }

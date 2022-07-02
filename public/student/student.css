@@ -6,7 +6,7 @@ color: black;
 
 #itemSearch{
     padding: 0.5rem 1rem;
-    width: 30vw;
+    width: 31vw;
     border: none;
     border-bottom: 1px solid black;
 }
@@ -25,4 +25,10 @@ color: black;
 
 .hidden{
     display: none;
+}
+
+#dropdown-items{
+    height: 15rem;
+    overflow-x: hidden;
+    overflow: scroll;
 }

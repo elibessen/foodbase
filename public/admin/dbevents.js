@@ -57,3 +57,26 @@ function getOrders(){
          }
     })
 }
+function updateIngredientLists()
+{
+    db.collection("ingredientLists").onSnapshot((snapshot) => 
+    { // event that runs when database is changed
+        ingredientLists.length=0;
+      snapshot.forEach((doc) => 
+      {
+          const object = 
+          { //creating ingredient object structure
+              ingredientListName: doc.id,
+              information : 
+              {
+                  ingredients: doc.data().ingredients,
+                  amounts: doc.data().amounts
+              }
+          }
+          ingredientLists.push(object);//adding all documents into ingredients[]
+          
+      })
+      displayIngredientLists()
+    })
+    console.log(ingredientLists);
+}

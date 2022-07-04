@@ -124,6 +124,14 @@ table
     content: "\a";
     white-space: pre;
 }
+.ingListContainer
+{
+    padding: 10px;
+    margin: 10px;
+    border: 2px;
+    border-style: dashed;
+    border-color: black;
+}
 
 
 

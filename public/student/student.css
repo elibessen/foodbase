@@ -14,21 +14,49 @@ color: black;
 .dropdown-content{
     border: 1px solid black;
     border-radius: 0.2rem;
+    z-index: -9;
 }
 
 #dropdown-element{
     font-size: 1rem;
 }
+#dropdown-element-misc{
+    font-size: 1rem;
+}
 #dropdown-element:hover{
     background-color: rgb(238, 238, 238);
-}   
+    cursor: pointer;
+}
+#dropdown-element-misc:hover{
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+}
 
 .hidden{
     display: none;
 }
 
 #dropdown-items{
-    height: 15rem;
+    height: 50%;
     overflow-x: hidden;
     overflow: scroll;
+}
+
+#misc-input{
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 25%;
+    height: 20%;
+    background-color: white;
+}
+
+#misc-elements{
+    border: 1px solid black;
+    padding: 0.5rem; 
+    border-radius: 0.4rem; 
+    gap: 0.6rem; 
+    z-index: 9;
 }

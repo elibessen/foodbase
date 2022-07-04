@@ -72,7 +72,7 @@
           </div>
         </div>
           <div id="form-content" style="margin-left: 2rem;">
-            <input placeholder="Enter prac title" id="pracTitle" type="text" style="padding: 0.5rem 1rem">
+            <input placeholder="Enter prac title..." id="pracTitle" type="text" style="padding: 0.5rem 1rem">
             <input placeholder="Enter prac date..." id="pracDate" type="date" style="padding: 0.5rem 1rem">
             <input placeholder="Enter class code..." id="classCode" type="text" style="padding: 0.5rem 1rem">
             <div id="page" class="d-flex flex-row" style="gap: 16%;">
@@ -81,33 +81,11 @@
                   <div id="searchableDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search for item" id="itemSearch" onkeyup="filter()">
                     <div class="d-flex flex-column" id="dropdown-items">
-                      
                     </div>
-                  </div>
-                  <div id="misc-input" class="d-flex flex-column" style="width: 80%;">
-                    <h2><svg width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M12 4C9.243 4 7 6.243 7 9h2c0-1.654 1.346-3 3-3s3 1.346 3 3c0 1.069-.454 1.465-1.481 2.255-.382.294-.813.626-1.226 1.038C10.981 13.604 10.995 14.897 11 15v2h2v-2.009c0-.024.023-.601.707-1.284.32-.32.682-.598 1.031-.867C15.798 12.024 17 11.1 17 9c0-2.757-2.243-5-5-5zm-1 14h2v2h-2z"></path></svg>Add misc item</h2>
-                    <input id="misc-name" placeholder="Enter misc item name..." style="padding: 0.5rem 1rem;">
-                    <select id="misc-measurementType" style="padding: 0.5rem 1rem;">
-                      <option value="" disabled selected>Select the measurement type</option>
-                      <option value="count">Count</option>
-                      <option value="weight">Weight</option>
-                      <option value="volume">Volume</option>
-                    </select>
-                    <select id="misc-category" style="padding: 0.5rem 1rem;">
-                      <option value="" disabled selected>Select item category</option>
-                      <option value="FreshVegetables">Fresh Vegetables</option>
-                      <option value="Meat">Meat</option>
-                      <option value="Equipment">Equipment</option>
-                      <option value="Dairy&Eggs">Dairy & Eggs</option>
-                      <option value="Groceries">Groceries</option>
-                      <option value="Herbs/Spices">Fresh Herbs/Spices</option>
-                      <option value="Misc.">Misc</option>
-                    </select>
-                    <button id="misc-submit" class="btn btn-primary" onclick="addMiscItem()">Submit</button>
                   </div>
                 </div>
                 <div>
-                  <div id="shopping-cart">
+                  <div id="shopping-cart" class="d-flex flex-column">
                     <h2><svg width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921zM17.307 15h-6.64l-2.5-6h11.39l-2.25 6z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle></svg>Shopping Cart</h2>
                     <ul id="shopping-items">
                     </ul>
@@ -116,6 +94,30 @@
             </div>
             <div class="d-flex justify-content-end" style="margin-right: 1rem;">
               <button class="btn btn-primary" onclick="submitOrder()" style="padding: 1.5rem 2.5rem;">Submit Order</button>
+            </div>
+          </div>
+
+          <div id="misc-input">
+            <div id="misc-elements" class="d-flex flex-column justify-content-center">
+              <h2 style="text-align: center;">Add misc item</h2>
+              <input id="misc-name" placeholder="Enter misc item name..." style="padding: 0.5rem 1rem;">
+              <select id="misc-measurementType" style="padding: 0.5rem 1rem;">
+                <option value="" disabled selected>Select the measurement type</option>
+                <option value="count">Count</option>
+                <option value="weight">Weight</option>
+                <option value="volume">Volume</option>
+              </select>
+              <select id="misc-category" style="padding: 0.5rem 1rem;">
+                <option value="" disabled selected>Select item category</option>
+                <option value="FreshVegetables">Fresh Vegetables</option>
+                <option value="Meat">Meat</option>
+                <option value="Equipment">Equipment</option>
+                <option value="Dairy&Eggs">Dairy & Eggs</option>
+                <option value="Groceries">Groceries</option>
+                <option value="Herbs/Spices">Fresh Herbs/Spices</option>
+                <option value="Misc.">Misc</option>
+              </select>
+              <button id="misc-submit" class="btn btn-primary" onclick="addMiscItem()">Submit</button>
             </div>
           </div>
 

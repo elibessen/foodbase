@@ -6,13 +6,17 @@ var orderAmount = [];
 var ingredientNum = -1;
 var orderNum;
 
+var isMiscItem = false;
+
 // The specific collection needed for orders
 const orders = db.collection('orders');
 
 // Making the 'order submitted' text hide
 document.querySelector('#buffer').style.display = 'none';
 // Making the page hidden before use, stops people from ordering without logging in
-document.querySelector("#form-content").style.display = 'none'
+document.querySelector("#form-content").style.display = 'none';
+// Making the add misc items hidden
+$("#misc-input").hide();
 
 // This function only runs when the user has logged in
 
@@ -54,11 +58,22 @@ function studentOnLoad()
 
     function createDropdown(){
         const svg = '<svg style="float: right;" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path></svg>'
+        $("#dropdown-items").append("<a style='padding: 0.8rem 0.8rem' id='dropdown-element-misc' onclick='miscItem()'>Add Misc Item</a>");
         for(var i=0; i < ingredients.length; i++){
             // console.log(ingredients[i].information['category']);
-            $("#dropdown-items").append("<a id='dropdown-element' onclick='addToCart(this)' data-category-type=" + `${ingredients[i].information['category']}` + " data-measurement-type=" + ingredients[i].information['measurementType'] + ">" + ingredients[i].ingredientName + svg + "</a>");
+            $("#dropdown-items").append("<a style='padding: 0.8rem 0.8rem' id='dropdown-element' onclick='addToCart(this)' data-category-type=" + `${ingredients[i].information['category']}` + " data-measurement-type=" + ingredients[i].information['measurementType'] + ">" + ingredients[i].ingredientName + svg + "</a>");
         }
     };  
+}
+
+function miscItem(){
+    if(isMiscItem === false){
+        $("#misc-input").hide()
+        isMiscItem = true;
+    } else {
+        $("#misc-input").show()
+        isMiscItem = false;
+    }
 }
 
 // Gets the number of orders from the database
@@ -100,13 +115,13 @@ function addToCart(element){
     // Checks whether the measurement type is weight, volume or neither, then it appends a list item to the list 
     switch(info[2]){
         case 'weight':
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
+            $("#shopping-items").append('<li style="padding: 0.4rem 0.4rem;" id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right;" placeholder="Grams" onkeyup="updateQuantity(this)">' + '</li>');
             break;
         case 'volume':
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
+            $("#shopping-items").append('<li style="padding: 0.44rem 0.4rem;" id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right;" placeholder="mL" onkeyup="updateQuantity(this)">' + '</li>');
             break;
         default:
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'x' + '</li>');
+            $("#shopping-items").append('<li style="padding: 0.4rem 0.4rem;" id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right" placeholder="Amount" onkeyup="updateQuantity(this)">' + '</li>');
     }
 }
 
@@ -128,13 +143,13 @@ function removeFromCart(element){
         ingredientNum++;
         switch(items[i][2]){
             case 'weight':
-                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
+                $("#shopping-items").append('<li style="padding: 0.4rem 0.4rem;" id='+ ingredientNum  +'>' + items[i][0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right;" placeholder="Grams" onkeyup="updateQuantity(this)">' + '</li>');                
                 break;
             case 'volume':
-                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
+                $("#shopping-items").append('<li style="padding: 0.44rem 0.4rem;" id='+ ingredientNum  +'>' + items[i][0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right;" placeholder="mL" onkeyup="updateQuantity(this)">' + '</li>');
                 break;
             default:
-                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'x' + '</li>');
+                $("#shopping-items").append('<li style="padding: 0.4rem 0.4rem;" id='+ ingredientNum  +'>' + items[i][0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right" placeholder="Amount" onkeyup="updateQuantity(this)">' + '</li>');
         }
     }
     console.log("Item list:", items);
@@ -179,13 +194,13 @@ function addMiscItem(){
     // Checks whether the measurement tpye is weight, volume or neither 
     switch(info[1]){
         case 'weight':
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'g' + '</li>');
+            $("#shopping-items").append('<li style="padding: 0.4rem 0.4rem;" id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right;" placeholder="Grams" onkeyup="updateQuantity(this)">' + '</li>');
             break;
         case 'volume':
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
+            $("#shopping-items").append('<li style="padding: 0.44rem 0.4rem;" id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right;" placeholder="mL" onkeyup="updateQuantity(this)">' + '</li>');
             break;
         default:
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'x' + '</li>');
+            $("#shopping-items").append('<li style="padding: 0.4rem 0.4rem;" id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 25%; border: none; border-bottom: 1px solid black; float: right" placeholder="Amount" onkeyup="updateQuantity(this)">' + '</li>');
     }
 }
 

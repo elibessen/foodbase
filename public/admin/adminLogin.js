@@ -130,7 +130,6 @@ function writeUserToDB() {
 function fetchUsername(){
     users.doc(auth.currentUser.uid).get().then((doc) => {
         if(doc.exists) {
-            console.log(doc.data().username);
             username.innerHTML = doc.data().username.toUpperCase() + ', ADMIN'
         } else {
             console.log("Username doesn't exist");

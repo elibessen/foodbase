@@ -16,6 +16,7 @@ var ingListCont;
 var currentIlist = [];
 var currentIvalues = [];
 
+//values for all orders
 function getAmountUnit(ingred)
 {
    switch(ingred.information.measurementType)
@@ -66,6 +67,7 @@ function adminOnload()
    //Database Events
    updateIngredients();
    //updateIngredientLists();
+   getOrders();
 
 }
 

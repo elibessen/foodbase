@@ -106,7 +106,7 @@ function addToCart(element){
             $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
             break;
         default:
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'x' + '</li>');
     }
 }
 
@@ -134,7 +134,7 @@ function removeFromCart(element){
                 $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
                 break;
             default:
-                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
+                $("#shopping-items").append('<li id='+ ingredientNum +'>' + items[i][0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'x' + '</li>');
         }
     }
     console.log("Item list:", items);
@@ -185,7 +185,7 @@ function addMiscItem(){
             $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'mL' + '</li>');
             break;
         default:
-            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + '</li>');
+            $("#shopping-items").append('<li id='+ ingredientNum  +'>' + info[0] + svg + '<input style="width: 27%" placeholder="Quantity" onkeyup="updateQuantity(this)">' + 'x' + '</li>');
     }
 }
 

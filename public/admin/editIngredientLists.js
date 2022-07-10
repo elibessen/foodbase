@@ -29,11 +29,31 @@ function makeCurrentIngredientList()
 {
     removeElementsByClass("ciSpan");
     for (i=0;i<currentIlist.length;i++) {
+        let trow = document.createElement("tr");
+        let entrydata = document.createElement("td");
+        let deletedata = document.createElement("td");
+        let smldelico  = document.createElement("img");
+
+        smldelico.classList.add("delicon");
+        smldelico.src = "../img/delete.png";//setting delete image
+        smldelico.value = i;//storing the ingredient list name for use in function
+        smldelico.addEventListener('click', DeleteCurrentIngredient);
+
+
+        entrydata.classList.add("noborder")
+        trow.classList.add("noborder")
+        deletedata.classList.add("noborder")
+
         let entry =  document.createElement("span");
         entry.innerHTML = `•${ingredients[currentIlist[i]].ingredientName} - ${currentIvalues[i]}${getAmountUnit(ingredients[currentIlist[i]])}`;
         console.log(entry.innerHTML);
-        entry.classList.add("ciSpan");
-        ingListCont.appendChild(entry);
+        trow.classList.add("ciSpan");
+        entrydata.appendChild(entry)
+        deletedata.appendChild(smldelico);
+        trow.appendChild(entrydata);
+        trow.appendChild(deletedata);
+
+        ingListCont.appendChild(trow);
 
     }
 
@@ -57,6 +77,7 @@ function AddIngredientList()
     });
     currentIlist.length = 0;
     currentIvalues.length = 0;
+    input_ingListName.value = "";
     makeCurrentIngredientList();
 }
 
@@ -65,7 +86,8 @@ function displayIngredientLists()
     removeElementsByClass("rmIngList");
     for (let i = 0; i < ingredientLists.length; i++)
     {
-        let ingContainer = document.createElement("div");
+        let ingContainer = document.createElement("div"); //now table element
+        
         ingContainer.classList.add("rmIngList");
         ingContainer.classList.add("ingListContainer");
         ingContainer.classList.add("cflex");
@@ -76,7 +98,7 @@ function displayIngredientLists()
         var delico = document.createElement("img");//delete icon
         delico.classList.add("delicon");
         delico.src = "../img/delete.png";//setting delete image
-        delico.value=ingredientLists[i].ingredientListName;//storing the ingredient list name for use in function
+        delico.value = ingredientLists[i].ingredientListName;//storing the ingredient list name for use in function
         delico.addEventListener('click', DeleteIngredientList);//runs delete ingredient list when delico is clicked
         
         let ingListHeader = document.createElement("h5");
@@ -104,4 +126,12 @@ var DeleteIngredientList = function ()
         //runs on failure
       console.error("Error removing document: ", error);
   });
+}
+
+var DeleteCurrentIngredient = function ()
+{
+    console.log(this.value);
+    currentIlist.splice(parseInt(this.value), 1);
+    currentIvalues.splice(parseInt(this.value), 1);
+    makeCurrentIngredientList();
 }

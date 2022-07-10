@@ -119,11 +119,6 @@ table
     border-bottom: none;
 }
 
-.ciSpan::after
-{
-    content: "\a";
-    white-space: pre;
-}
 .ingListContainer
 {
     padding: 10px;
@@ -133,5 +128,7 @@ table
     border-color: black;
 }
 
-
-
+.noborder
+{
+    border-style: none;
+}

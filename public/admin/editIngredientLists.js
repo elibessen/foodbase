@@ -12,6 +12,7 @@ function makeIngredientDropdown()
 
 function AddToIngredientList()
 {
+    console.log(currentIlist);
     if (currentIlist.includes(dropdown_ingList.value))
     {
         currentIvalues[currentIlist.indexOf(dropdown_ingList.value)] = input_ingAmount.value;
@@ -45,6 +46,7 @@ function makeCurrentIngredientList()
         deletedata.classList.add("noborder")
 
         let entry =  document.createElement("span");
+        console.log(currentIlist[i]);
         entry.innerHTML = `•${ingredients[currentIlist[i]].ingredientName} - ${currentIvalues[i]}${getAmountUnit(ingredients[currentIlist[i]])}`;
         console.log(entry.innerHTML);
         trow.classList.add("ciSpan");
@@ -100,11 +102,19 @@ function displayIngredientLists()
         delico.src = "../img/delete.png";//setting delete image
         delico.value = ingredientLists[i].ingredientListName;//storing the ingredient list name for use in function
         delico.addEventListener('click', DeleteIngredientList);//runs delete ingredient list when delico is clicked
+
+        var editico = document.createElement("img");//edit icon
+        editico.classList.add("delicon");
+        editico.src = "../img/edit.svg";//setting delete image
+        editico.value = ingredientLists[i]//storing the ingredient list name for use in function
+        editico.addEventListener('click', EditIngredientList);
+
         
         let ingListHeader = document.createElement("h5");
         ingListHeader.innerHTML = ingredientLists[i].ingredientListName;
         deletecolumn.appendChild(ingListHeader);
         deletecolumn.appendChild(delico);
+        deletecolumn.appendChild(editico);
         ingContainer.appendChild(deletecolumn);
 
         for (let j = 0; j < ingredientLists[i].information.ingredients.length; j++)
@@ -134,4 +144,32 @@ var DeleteCurrentIngredient = function ()
     currentIlist.splice(parseInt(this.value), 1);
     currentIvalues.splice(parseInt(this.value), 1);
     makeCurrentIngredientList();
+}
+
+var EditIngredientList = function ()
+{
+    console.log(this.value);
+    console.log(currentIlist);
+    input_ingListName.value = this.value.ingredientListName;
+    for (i = 0; i < this.value.information.ingredients.length; i++)
+    {
+        for (j = 0; j < ingredients.length; j++)
+        {
+            console.log(this.value.information.ingredients[i].ingredientName + " " + ingredients[j].ingredientName)
+            if(this.value.information.ingredients[i].ingredientName == ingredients[j].ingredientName)
+            {
+                console.log(j);
+                currentIlist[i] = j.toString();
+            }
+        }
+    }
+    console.log(this.value.information.amounts);
+    currentIvalues = this.value.information.amounts;
+    makeCurrentIngredientList();
+}
+
+function findinIngredients(ing)
+{
+    console.log(ingredients.indexOf(ing));
+    return ingredients.indexOf(ing);
 }

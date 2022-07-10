@@ -57,6 +57,7 @@ function getOrders(){
          }
     })
 }
+
 function updateIngredientLists()
 {
     db.collection("ingredientLists").onSnapshot((snapshot) => 
@@ -78,5 +79,5 @@ function updateIngredientLists()
       })
       displayIngredientLists()
     })
-    console.log(ingredientLists);
+    console.log("ingredient lists updated");
 }

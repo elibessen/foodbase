@@ -148,24 +148,24 @@ var DeleteCurrentIngredient = function ()
 
 var EditIngredientList = function ()
 {
-    console.log(this.value);
-    console.log(currentIlist);
     input_ingListName.value = this.value.ingredientListName;
     for (i = 0; i < this.value.information.ingredients.length; i++)
     {
         for (j = 0; j < ingredients.length; j++)
         {
-            console.log(this.value.information.ingredients[i].ingredientName + " " + ingredients[j].ingredientName)
             if(this.value.information.ingredients[i].ingredientName == ingredients[j].ingredientName)
             {
-                console.log(j);
                 currentIlist[i] = j.toString();
             }
         }
     }
+    console.log("next is database then values");
     console.log(this.value.information.amounts);
-    currentIvalues = this.value.information.amounts;
+    currentIvalues = [...this.value.information.amounts];
+    console.log(currentIvalues);
+
     makeCurrentIngredientList();
+    console.log(currentIvalues);
 }
 
 function findinIngredients(ing)

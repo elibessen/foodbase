@@ -19,6 +19,8 @@ var currentIlist = [];
 var currentIvalues = [];
 var fullIngListCont;
 
+// Students orders
+var allStudents = [];
 //values for all orders
 function getAmountUnit(ingred)
 {
@@ -74,7 +76,7 @@ function adminOnload()
    //updateIngredientLists();
    getOrders();
    updateIngredientLists();
-
+   getEachStudentOrder();
 }
 
 

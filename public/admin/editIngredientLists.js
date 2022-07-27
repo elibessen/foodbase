@@ -87,7 +87,7 @@ function makeCurrentIngredientList()
 function AddIngredientList()
 {
 
-     // array of ingredients described by currentIlist
+    // array of ingredients described by currentIlist
     let temparray = []; 
 
     //populate temparray
@@ -96,8 +96,13 @@ function AddIngredientList()
         temparray.push(ingredients[currentIlist[i]]);
     }
 
+    console.log(currentIlist);
+    console.log(temparray);
+    console.log(currentIvalues);
+
     //add ingredient list to database
     db.collection("ingredientLists").doc(input_ingListName.value).set({
+        ingredients: temparray,
         amounts: currentIvalues
     })
      .then(() => { // runs on succsess
@@ -155,14 +160,20 @@ function displayIngredientLists()
         ingContainer.appendChild(deletecolumn);
 
         //creating, populating, and inserting text elements.
-        for (let j = 0; j < ingredientLists[i].information.ingredients.length; j++)
+        try{
+            for (let j = 0; j < ingredientLists[i].information.ingredients.length; j++)
+            {
+                let line = document.createElement("span");
+                line.innerHTML = `•${ingredientLists[i].information.ingredients[j].ingredientName} - ${ingredientLists[i].information.amounts[j]}${getAmountUnit(ingredientLists[i].information.ingredients[j])} `;
+                ingContainer.appendChild(line);
+            }
+            
+            fullIngListCont.appendChild(ingContainer); //adding list element to list container
+            }
+        catch
         {
-            let line = document.createElement("span");
-            line.innerHTML = `•${ingredientLists[i].information.ingredients[j].ingredientName} - ${ingredientLists[i].information.amounts[j]}${getAmountUnit(ingredientLists[i].information.ingredients[j])} `;
-            ingContainer.appendChild(line);
+            continue;
         }
-        
-        fullIngListCont.appendChild(ingContainer); //adding list element to list container
     }
 }
 

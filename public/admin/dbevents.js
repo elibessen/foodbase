@@ -26,20 +26,26 @@ function getOrders(){
     var OrderAmount;
     var allOrders = [];
 
-
     db.collection('orders').doc('OrderAmount').get().then((doc) => {
 
+        // Gets the amount of orders in the databse
         OrderAmount = doc.data().num + 1;
+        // Adds all the orders names to an array based on the OrderAmount value
         for(var i=1; i < OrderAmount; i++){
             allOrders.push("Order" + i);
         }
         console.log(allOrders);
 
+        // Loops through all of the orders found in the previous for loop
         for(var i=0; i < allOrders.length; i++){
+            // Gets all of the ingredients documents in every students orders
             db.collection('orders').doc(allOrders[i]).collection('ingredients').get().then((snapshot) => {
             snapshot.forEach((doc) => {
+                // Gets the ingredient names and their associated quantity and measurement type
                 db.collection('orders').doc(allOrders[i]).collection('ingredients').doc(doc.id).get().then(snapshot => {
+                    // Pushes all of the data into an array for easier processing
                     var array = [doc.id, doc.data().quantity, doc.data().measurementType]
+                    // Checks the quantity and appends the correct measurement type
                     switch(array[2]){
                         case 'volume':
                             $("#shoppingList").append("<li>" + array[0] + " " + array[1] + "mL" + "</li>");
@@ -49,7 +55,6 @@ function getOrders(){
                             break;
                         default:
                             $("#shoppingList").append("<li>" + array[0] + " " + array[1] + "x" + "</li>");
-                            break;
                     }
                 })
             });
@@ -80,4 +85,42 @@ function updateIngredientLists()
       displayIngredientLists()
     })
     console.log("ingredient lists updated");
+}
+
+
+function getEachStudentOrder(){
+    var array = [];
+    var currentStudentOrder = [];
+    const object = {
+        
+    }
+    db.collection('students').onSnapshot((snapshot) => 
+    {
+        snapshot.forEach((doc) => 
+        {
+            allStudents.push(doc.data());
+        })
+        console.log('All Student data:', allStudents);
+    })
+
+    db.collection('orders').doc('OrderAmount').get().then((doc) => {
+
+        localOrderAmount = doc.data().num + 1;
+
+        for(var i=1; i < localOrderAmount; i++){
+            array.push("Order" + i);
+        }
+        console.log(array);
+        for(var i=0; i<array.length; i++){
+            console.log(array[i]);
+            db.collection('orders').doc(array[i]).get().then((doc) => {
+                console.log("Current order UID:", doc.data().uid);
+                db.collection('orders').doc(array[i]).collection('ingredients').get().then((snapshot) => {
+                    snapshot.forEach((doc) =>  {
+                        console.log(doc.id, "Quantity: ", doc.data().quantity);
+                    })
+                })
+            })
+        }
+    })
 }

@@ -73,7 +73,6 @@ function adminOnload()
 
    //Database Events
    updateIngredients();
-   //updateIngredientLists();
    getOrders();
    updateIngredientLists();
    getEachStudentOrder();

@@ -19,6 +19,11 @@ var currentIlist = [];
 var currentIvalues = [];
 var fullIngListCont;
 
+//values for add order
+var dropdown_ingredientLists;
+var input_orderNum;
+var input_pracDate;
+
 // Students orders
 var allStudents = [];
 //values for all orders
@@ -70,6 +75,12 @@ function adminOnload()
    ingListCont = document.getElementById("ingListCont");
    input_ingListName = document.getElementById("ingListName");
    fullIngListCont = document.getElementById("fullIngListCont");
+
+   //for add orders
+   dropdown_ingredientLists = document.getElementById("ingredientListDropdown");
+   input_orderNum = document.getElementById("orderNum");
+   input_pracDate = document.getElementById("pracDate");
+
 
    //Database Events
    updateIngredients();

@@ -96,10 +96,6 @@ function AddIngredientList()
         temparray.push(ingredients[currentIlist[i]]);
     }
 
-    console.log(currentIlist);
-    console.log(temparray);
-    console.log(currentIvalues);
-
     //add ingredient list to database
     db.collection("ingredientLists").doc(input_ingListName.value).set({
         ingredients: temparray,

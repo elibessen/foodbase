@@ -79,23 +79,27 @@
           <div class="sidebar" width = 100px>
             <br></br>
             <button class="sidebutton" onclick="changepage('shoppingListCont')">Shopping list</button>
-            <button class="sidebutton" onclick="changepage('studentOrdersCont')">Student Orders</button>
+            <!-- <button class="sidebutton" onclick="changepage('studentOrdersCont')">Student Orders</button> -->
             <button class="sidebutton" onclick="changepage('editOrdersCont')">Edit Orders</button>
             <button class="sidebutton" onclick="changepage('addOrderCont')">Add Order</button>
             <button class="sidebutton" onclick="changepage('editIListsCont')">Edit Ingredient Lists</button>
             <button class="sidebutton" onclick="changepage('editIngredientsCont')">Edit Ingredients</button>
-            
           </div>
           <div id = maincontent>
+            <select id="filterList">
+              <option value="" disabled selected>Select the filter</option>
+              <option value="filter-all">All</option>
+              <option value="filter-name">Name</option>
+              <option value="filter-date">Date</option>
+              <option value="filter-code">Class Code</option>
+            </select>
             <div id="shoppingListCont">
                 <ul id="shoppingList">
 
                 </ul>
-
             </div>
-            <div id="studentOrdersCont">
-              <p>b</p>
-            </div>
+            <!-- <div id="studentOrdersCont">
+            </div> -->
             <div id="editOrdersCont">
               <p>c</p>
             </div>

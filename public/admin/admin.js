@@ -21,7 +21,13 @@ var fullIngListCont;
 
 // Students orders
 var allStudents = [];
+// Variables for the amount of orders
+var OrderAmount;
+var allOrders = [];
+var studentOrders = [];
+var allStudentsOrders = [];
 //values for all orders
+
 function getAmountUnit(ingred)
 {
    switch(ingred.information.measurementType)
@@ -72,10 +78,9 @@ function adminOnload()
    fullIngListCont = document.getElementById("fullIngListCont");
 
    //Database Events
+   getOrderAmount();
    updateIngredients();
-   getOrders();
    updateIngredientLists();
-   getEachStudentOrder();
 }
 
 

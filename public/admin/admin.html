@@ -20,6 +20,7 @@
         <script src="../config.js"></script>
         <script src="editIngredients.js"></script>
         <script src="editIngredientLists.js"></script>
+        <script src="addOrder.js"></script>
         <script src="dbevents.js"></script>
         <script src="admin.js"></script>
     </head>
@@ -104,7 +105,17 @@
               <p>c</p>
             </div>
             <div id="addOrderCont">
-              <p>d</p>
+              <div class = "enterbox">
+                <h5>Add Order From List</h5>
+                <span>Selected List:</span>
+                <select id = "ingredientListDropdown"></select>
+                <span>Number of orders:</span>
+                <input id="orderNum" type = "number"></input>
+                <span>Date Required:</span>
+                <input id="pracDate" type = "date"></input>
+                <br></br>
+                <button onclick="addOrderFromList()">Place Order</button>
+              </div>
             </div>
             <div id="editIListsCont">
               <h1>Ingredient lists</h1>

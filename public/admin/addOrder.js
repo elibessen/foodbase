@@ -12,6 +12,7 @@ function updateIngredientListSelect()
 }
 async function addOrderFromList()
 {
+    if (!confirm(`Place Order?`)) return null;
     let list = dropdown_ingredientLists.value;
     let multiplier  = input_orderNum.value;
     let pracDate = input_pracDate.value;
@@ -46,7 +47,6 @@ async function addOrderFromList()
                 break;
             }
         }
-        console.log(listData);
         for (i = 0; i < listData.information.ingredients.length; i++){
             db.collection('orders').doc("Order" + (OrderAmount)).collection('ingredients').doc(listData.information.ingredients[i].ingredientName).set({
                 category: listData.information.ingredients[i].information.category,

@@ -41,6 +41,9 @@ function makeIngredientTable()
 //deletes the document specified in the value of the element that calls it.
 var DeleteIngredient = function ()
 {
+   if (!confirm(`Delete ${this.value}?`)) {
+      return null;
+   }
    db.collection("ingredients").doc(this.value).delete().then(() => { 
         //runs on success
       console.log(this.value + "successfully deleted!");
@@ -53,6 +56,19 @@ var DeleteIngredient = function ()
 //adds an ingredient to the database from the dropdown values
 function AddIngredient()
 {
+   let indb;
+   for (let i = 0; i < ingredients.length; i++)
+   {
+      indb = ingredients[i].ingredientName == dropdown_ingName.value;
+      if (indb) break;
+   }
+   if (indb)
+   {
+      if (!confirm(`Overwrite ${dropdown_ingName.value}?`)) 
+      {
+         return null;
+      }
+   }
    db.collection("ingredients").doc(dropdown_ingName.value).set({
       category: dropdown_ingCat.value,
       measurementType: dropdown_ingMtype.value

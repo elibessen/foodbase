@@ -86,6 +86,21 @@ function makeCurrentIngredientList()
 //adds the current ingredient list to the database
 function AddIngredientList()
 {
+    let indb;
+   for (let i = 0; i < ingredientLists.length; i++)
+   {
+      indb = ingredientLists[i].ingredientListName == input_ingListName.value;
+      if (indb) break;
+   }
+   if (indb)
+   {
+      if (!confirm(`Overwrite ${input_ingListName.value}?`)) 
+      {
+         return null;
+      }
+   }
+
+
 
     // array of ingredients described by currentIlist
     let temparray = []; 
@@ -177,6 +192,7 @@ function displayIngredientLists()
 //(run on button click)
 var DeleteIngredientList = function ()
 {
+    if (!confirm(`Delete ${this.value}?`)) return null;
    db.collection("ingredientLists").doc(this.value).delete().then(() => { 
         //runs on success
       console.log(this.value + "successfully deleted!");

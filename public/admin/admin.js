@@ -23,6 +23,7 @@ var fullIngListCont;
 var dropdown_ingredientLists;
 var input_orderNum;
 var input_pracDate;
+var input_classCode;
 
 // Students orders
 var allStudents = [];
@@ -84,8 +85,9 @@ function adminOnload()
 
    //for add orders
    dropdown_ingredientLists = document.getElementById("ingredientListDropdown");
-   input_orderNum = document.getElementById("orderNum");
-   input_pracDate = document.getElementById("pracDate");
+   input_orderNum = document.getElementById("listorderNum");
+   input_pracDate = document.getElementById("listpracDate");
+   input_classCode = document.getElementById("listclassCode");
 
 
    //Database Events

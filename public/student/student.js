@@ -207,6 +207,7 @@ function addMiscItem(){
 // This function is only ran when the use clicks the submit order button.
 
 function submitOrder(){
+    if (!confirm(`Place Order?`)) return null;
     // Before fully submitting the order, I check if the order number has changed after the app has loaded
     orders.doc("OrderAmount").get().then((doc) => {
         orderNum = doc.data();

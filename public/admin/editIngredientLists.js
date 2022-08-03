@@ -116,11 +116,13 @@ function AddIngredientList()
         ingredients: temparray,
         amounts: currentIvalues
     })
-     .then(() => { // runs on succsess
+     .then(() => { // runs on success
+        alert((indb)?"Ingredient List Updated":"Ingredient List Added");
         console.log("Document successfully written!");
     })
      .catch((error) => {//runs on failure
         console.error("Error writing document: ", error);
+        alert("An Error Occurred, Ingredient was not added");
     });
 
     //clearing the editor 
@@ -199,6 +201,7 @@ var DeleteIngredientList = function ()
   }).catch((error) => {
         //runs on failure
       console.error("Error removing document: ", error);
+      alert("An Error Occurred, Ingredient List was not deleted.");
   });
 }
 

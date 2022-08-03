@@ -75,8 +75,10 @@ function AddIngredient()
    })
    .then(() => {
       console.log("Document successfully written!");
+      alert("Ingredient Added");
    })
    .catch((error) => {
       console.error("Error writing document: ", error);
+      alert("An Error Occurred, Ingredient Was Not Added");
    });
 }

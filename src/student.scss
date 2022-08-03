@@ -10,7 +10,7 @@ body {
     border: none;
     border-bottom: 1px solid black;
 }
-    
+
 .dropdown-content{
     border: 1px solid black;
     border-radius: 0.2rem;
@@ -37,7 +37,7 @@ body {
 }
 
 #dropdown-items{
-    height: 50%;
+    height: 50vh;
     overflow-x: hidden;
     overflow: scroll;
 }

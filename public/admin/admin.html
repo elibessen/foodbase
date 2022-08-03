@@ -78,8 +78,8 @@
           <li><a class="nav-link" id="adminnavlogin"></a></li>
         </ul>
       </div>
-      <div id="maincontent">
-        <div id="shoppingListCont">
+      <div id="maincontent" style="width: 80%;">
+        <div id="shoppingListCont" style="width: 95vw;">
           <h1>Shopping List</h1>
           <select id="filterList">
             <option value="" disabled selected>Select Filter</option>
@@ -88,9 +88,9 @@
             <option value="pracDate">Date</option>
             <option value="classCode">Class Code</option>
           </select>
-            <ul id="shoppingList">
-
-            </ul>
+          <table id="shoppingList" style="width: 100%;" class="table">
+          
+          </table>
         </div>
 
         <div id="editOrdersCont">
@@ -144,11 +144,11 @@
         </div> 
 
         <div id="editIngredientsCont" style="margin-left: 1rem;">
-          <div class="d-flex flex-row">
+          <div class="d-flex flex-row" style="gap: 1rem;">
             <div class="cflex">
               <h1>Ingredients</h1>
                 <table id="ingredientTable" class="table table-striped">
-                  <tr><th>Name</th><th>Category</th><th>Measurement</th></tr>
+                  <tr><th>Name</th><th>Category</th><th>Measurement Type</th></tr>
                 </table>
             </div>
             <div id="addIngBox" class="d-flex flex-column justify-content-center enterBox" style="gap: 0.2rem; padding: 2rem 2rem;">

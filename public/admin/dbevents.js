@@ -12,9 +12,7 @@ function updateIngredients()
               }
           }
           ingredients.push(object);//adding all documents into ingredients[]
-          
       })
-
       //replacing old table elements with new ones
       removeElementsByClass("ingtr");
       makeIngredientTable();
@@ -41,7 +39,6 @@ $(document).on('change', '#filterList', function() {
 
 async function getUID(){
     allUID.length = 0;
-    $("#shoppingList").empty();
     for(var i=0; i < allOrders.length; i++){
         await db.collection('orders').doc(allOrders[i]).get().then((doc) => {
             var array = [allOrders[i], doc.data().uid, doc.data().classCode, doc.data().pracDate];
@@ -67,12 +64,12 @@ async function getOrders(allUID){
                         pracDate: `${allUID[i][3]}` 
                     }
                 }
-                db.collection('students').where("uid", "==", allUID[i][1]).get().then((snapshot) => {
+                db.collection('students').where("uid", "==", allUID[i][1]).onSnapshot((snapshot) => {
                     snapshot.forEach((doc) => {
                         object.information.name = `${doc.data().username}`
                     })
                 })
-                db.collection('users').where("uid", "==", allUID[i][1]).get().then((snapshot) => {
+                db.collection('users').where("uid", "==", allUID[i][1]).onSnapshot((snapshot) => {
                     snapshot.forEach((doc) => {
                         object.information.name = `${doc.data().username}`
                     })
@@ -83,6 +80,7 @@ async function getOrders(allUID){
             allStudentsOrders.push(object);
         })
         array.length = 0;
+        console.log(allStudentsOrders);
     }
     writeShoppingList('');
 }
@@ -91,50 +89,55 @@ function writeShoppingList(filter){
     $("#shoppingList").empty();
     switch(filter){
         case 'uid'  :
+            $("#shoppingList").empty();
             filterByName();
             break;
         case 'pracDate':
+            $("#shoppingList").empty();
+            $("#shoppingList").append("<tr>" + "<th>" + "Ingredient" + "</th>" + "<th>" + "Quantity" + "</th>" + "<th>" + "Category" + "</th>" + "</tr>");
             filterByDate();
             break;
         case 'classCode':
+            $("#shoppingList").empty();
+            $("#shoppingList").append("<tr>" + "<th>" + "Ingredient" + "</th>" + "<th>" + "Quantity" + "</th>" + "<th>" + "Category" + "</th>" + "</tr>");
             filterByClass();
             break;
         default:
+            $("#shoppingList").empty();
             filterByAll();
             return 'all';
     }
 }
 
 function filterByName(){
-    $("#shoppingList").empty();
     var object = {
 
     }
     for(var i=0; i<allStudentsOrders.length; i++){
         $("#shoppingList").append("<h3>" + allStudentsOrders[i].information.name + ":" + "</h3>");
+        $("#shoppingList").append("<tr>" + "<th>" + "Ingredient" + "</th>" + "<th>" + "Quantity" + "</th>" + "<th>" + "Category" + "</th>" + "</tr>");
         for(var j=0; j<allStudentsOrders[i].ingredients.length; j++){
-            $("#shoppingList").append("<li>" + allStudentsOrders[i].ingredients[j][0]);
+            $("#shoppingList").append("<tr>" + "<td>" + allStudentsOrders[i].ingredients[j][0] + "</td>" + "<td>" + allStudentsOrders[i].ingredients[j][1].quantity + "</td>" + "<td>" + allStudentsOrders[i].ingredients[j][1].category + "</td>" + "</tr>");
+            // $("#shoppingList").append("<li>" + allStudentsOrders[i].ingredients[j][0]);
         }
     }
     // Do stuff
 }
 
 function filterByDate(){
-    $("#shoppingList").empty();
 }
 
 function filterByClass(){
-    $("#shoppingList").empty();
 }
 
 function filterByAll(){
-    $("#shoppingList").empty();
+    $("#shoppingList").append("<tr>" + "<th>" + "Ingredient" + "</th>" + "<th>" + "Quantity" + "</th>" + "<th>" + "Category" + "</th>" + "</tr>");
     for(var i=0; i<allStudentsOrders.length; i++){
         for(var j=0; j<allStudentsOrders[i].ingredients.length; j++){
             function checkQuantity(){
                 switch(allStudentsOrders[i].ingredients[j][1].measurementType){
                     case 'weight':
-                        return 'grams';
+                        return 'g';
                     case 'count':
                         return 'x'
                     case 'volume':
@@ -144,23 +147,12 @@ function filterByAll(){
                 }
             }
             var quantityType = checkQuantity();
-            $("#shoppingList").append("<li>" + allStudentsOrders[i].ingredients[j][0] + " " + allStudentsOrders[i].ingredients[j][1].quantity + quantityType + "</li>");
+            $("#shoppingList").append("<tr>" + "<td>" + allStudentsOrders[i].ingredients[j][0] + "</td>" + "<td>" + allStudentsOrders[i].ingredients[j][1].quantity + quantityType + "</td>" + "<td>" + allStudentsOrders[i].ingredients[j][1].category + "</td>" + "</tr>");
+            // $("#shoppingList").append("<li>" + allStudentsOrders[i].ingredients[j][0] + " " + allStudentsOrders[i].ingredients[j][1].quantity + quantityType + "</li>");
+            
         }
     }
 }
-
-// function checkFilter(filter){
-//     switch(filter){
-//         case 'uid':
-//             return 'uid';
-//         case 'pracDate':
-//             return 'pracDate';
-//         case 'classCode':
-//             return 'classCode';
-//         default:
-//             return 'all';
-//     }
-// }
 
 function updateIngredientLists()
 {

@@ -38,7 +38,7 @@ body {
 }
 
 #dropdown-items {
-  height: 50%;
+  height: 50vh;
   overflow-x: hidden;
   overflow: scroll;
 }

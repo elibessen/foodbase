@@ -22,10 +22,6 @@ html, body{
     padding: 1.5rem;
 }
 
-#shoppingListCont{
-    display:block;
-}
-
 #studentOrdersCont{
     display:none;
 }
@@ -70,8 +66,8 @@ table{
 }
 
 .delicon{
-    width: 20px;
-    height:20px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .deltable{
@@ -101,6 +97,16 @@ table{
     margin-left: 18rem;
 }
 
-#editIngredientsCont{
-    
+#shoppingList{
+    th, td{
+        border: 1px solid black;
+        padding: 0.4rem 1rem;
+    }
+}
+
+#ingredientTable{
+    th, td{
+        border: 1px solid black;
+        padding: 0.4rem 1rem; 
+    }
 }

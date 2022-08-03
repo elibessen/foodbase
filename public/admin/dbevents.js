@@ -31,49 +31,57 @@ function getOrderAmount(){
             allOrders.push("Order" + i)
         }
         
-        getOrders();
+        getUID();
         // getStudentOrder();
     })
 }
 
-// $("#filterList").change(function () {
-//     console.log("Yo: ", this.value);
-// })
 $(document).on('change', '#filterList', function() {
     console.log(this.value);
+    getUID(this.value)
 })
 
-async function getOrders(filter){
-        // Loops through all of the orders found in the previous for loop
-        for(var i=0; i < allOrders.length; i++){
-            // Gets all of the ingredients documents in every students orders
-            await db.collection('orders').doc(allOrders[i]).get().then((doc) => {
-                console.log(doc.data().uid);
-                db.collection('orders').doc(allOrders[i]).collection('ingredients').get().then((snapshot) => {
-                    snapshot.forEach((doc) => {
-                        // Gets the ingredient names and their associated quantity and measurement type
-                        db.collection('orders').doc(allOrders[i]).collection('ingredients').doc(doc.id).get().then(snapshot => {
-                            // Pushes all of the data into an array for easier processing
-                            var array = [doc.id, doc.data().quantity, doc.data().measurementType];
-                            // Checks the quantity and appends the correct measurement type
-                            
-                            console.log(array);
-                            
-                            switch(array[2]){
-                                case 'volume':
-                                    $("#shoppingList").append("<li>" + array[0] + " " + array[1] + "mL" + "</li>");
-                                    break;
-                                case 'weight':
-                                    $("#shoppingList").append("<li>" + array[0] + " " + array[1] + "g" + "</li>");
-                                    break;
-                                default:
-                                    $("#shoppingList").append("<li>" + array[0] + " " + array[1] + "x" + "</li>");
-                            }
-                        })
-                    });
-                    }) 
+async function getUID(filter){
+    allUID.length = 0;
+    $("#shoppingList").empty();
+    for(var i=0; i < allOrders.length; i++){
+        await db.collection('orders').doc(allOrders[i]).get().then((doc) => {
+            var array = [allOrders[i], doc.data().uid, doc.data().classCode, doc.data().pracDate];
+            allUID.push(array);
+        })
+    }
+    console.log(allUID);
+    getOrders(allUID, filter);
+}
+
+async function getOrders(allUID, filter){
+    var array = [];
+    // var object ={
+
+    // }
+    for(var i=0; i<allUID.length; i++){
+        // array.length = 0;
+        await db.collection('orders').doc(allUID[i][0]).collection('ingredients').get().then((snapshot) => {
+            snapshot.forEach((doc) => {
+                array.push([doc.id, doc.data()]);
+                object = {
+                    information: {
+                        order: `${allUID[i][0]}`,
+                        uid: `${allUID[i][1]}`,
+                        classCode: `${allUID[i][2]}`,
+                        pracDate: `${allUID[i][3]}` 
+                    }
+                }
+                // $("#shoppingList").append("<h2>" + allUID[i][0] + "</h2>")
+                // $("#shoppingList").append("<li>" + doc.id + " " + doc.data().quantity + "</li>");
             })
-         }
+            console.log(array);
+            object.ingredients = array;
+            allStudentsOrders.push(object);
+        })
+        array.length = 0;
+        console.log(allStudentsOrders);
+    }
 }
 
 function updateIngredientLists()
@@ -100,26 +108,3 @@ function updateIngredientLists()
     })
     console.log("ingredient lists updated");
 }
-
-// async function getStudentOrder(){
-//     var studentsloc = [];
-//     db.collection('students').onSnapshot((snapshot) => {
-//         snapshot.forEach((doc) => {
-//             studentsloc.push(doc.data());
-//         })
-//         console.log('All student data:', studentsloc);
-//     })
-
-//     for(var i=0; i < allOrders.length; i++){
-
-//         await db.collection('orders').doc(allOrders[i]).get().then((doc) => {
-//             console.log(doc.data());
-//             db.collection('orders').doc(allOrders[i]).collection('ingredients').onSnapshot((snapshot) => {
-//                 snapshot.forEach((doc) => {
-//                     console.log(doc.id, doc.data());
-//                 })
-//             })
-//         })
-
-//     }
-// }

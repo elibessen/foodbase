@@ -1,62 +1,65 @@
-/* CSS goes into here */
-
 body {
-color: black;
+  color: black;
 }
 
-#itemSearch{
-    padding: 0.5rem 1rem;
-    width: 31vw;
-    border: none;
-    border-bottom: 1px solid black;
+#itemSearch {
+  padding: 0.5rem 1rem;
+  width: 31vw;
+  border: none;
+  border-bottom: 1px solid black;
 }
 
-.dropdown-content{
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    z-index: -9;
+.dropdown-content {
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  z-index: -9;
 }
 
-#dropdown-element{
-    font-size: 1rem;
-}
-#dropdown-element-misc{
-    font-size: 1rem;
-}
-#dropdown-element:hover{
-    background-color: rgb(238, 238, 238);
-    cursor: pointer;
-}
-#dropdown-element-misc:hover{
-    background-color: rgb(238, 238, 238);
-    cursor: pointer;
+#dropdown-element {
+  font-size: 1rem;
 }
 
-.hidden{
-    display: none;
+#dropdown-element-misc {
+  font-size: 1rem;
 }
 
-#dropdown-items{
-    height: 50%;
-    overflow-x: hidden;
-    overflow: scroll;
+#dropdown-element:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
 }
 
-#misc-input{
-    position: absolute;
-    top: 40%;
-    left: 45%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 25%;
-    height: 20%;
-    background-color: white;
+#dropdown-element-misc:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
 }
 
-#misc-elements{
-    border: 1px solid black;
-    padding: 0.5rem; 
-    border-radius: 0.4rem; 
-    gap: 0.6rem; 
-    z-index: 9;
+.hidden {
+  display: none;
 }
+
+#dropdown-items {
+  height: 50%;
+  overflow-x: hidden;
+  overflow: scroll;
+}
+
+#misc-input {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 25%;
+  height: 20%;
+  background-color: white;
+}
+
+#misc-elements {
+  border: 1px solid black;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  gap: 0.6rem;
+  z-index: 9;
+}
+
+/*# sourceMappingURL=student.css.map */

@@ -1,0 +1,74 @@
+#menuToggle {
+  opacity: 0;
+}
+#page{
+  transition: margin-left .5s;
+  padding: 2rem;
+}
+#menuToggle:checked + .menuBtn > span {
+  transform: rotate(45deg);
+}
+#menuToggle:checked + .menuBtn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+#menuToggle:checked + .menuBtn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+#menuToggle:checked ~ .menuBox {
+  left: 0;
+}
+.menuBtn {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+.menuBtn > span,
+.menuBtn > span::before,
+.menuBtn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #000000;
+  transition-duration: .25s;
+}
+.menuBtn > span::before {
+  content: '';
+  top: -8px;
+}
+.menuBtn > span::after {
+  content: '';
+  top: 8px;
+}
+.menuBox {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #ECEFF1;
+  transition-duration: .25s;
+}
+.menuItem {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: .25s;
+}
+.menuItem:hover {
+  background-color: #CFD8DC;
+} 

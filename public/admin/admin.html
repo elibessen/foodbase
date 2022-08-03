@@ -25,162 +25,156 @@
         <script src="admin.js"></script>
     </head>
     <body>   
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <img src="../img/bxs-baguette.svg" width="30" height="30" alt="">
-                <a class="navbar-brand" href="#">Food Order App</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" id="adminnavlogin"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html" id="return">Return</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <span class="navbar-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </span>
-                    <span class="navbar-text" id="username">
-                    </span>
-                </ul>
+      <div id="loginpage" >
+        <div class="d-flex justify-content-center" style="margin: 5%;">
+          <div class="bg-white" style="display: inline-block; padding: 4rem; border-radius: 0.9rem; padding-bottom: 5rem; border: 1px solid black">
+            <h4 style="text-align: center; padding-bottom: 2rem;">Admin Login</h2>
+            <div class="d-flex flex-column">
+              
+              <p style="padding: 0rem; margin: 0rem;">Email</p>
+              <input placeholder="Type your username" id="emailusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;">
+              
+              <!-- <p style="padding: 0rem; margin: 0rem;">Username</p>
+              <input placeholder="Type your username" id="adminusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;"> -->
+
+              <p style="padding: 0rem; margin: 0rem; margin-top: 1rem;">Password</p>
+              <input placeholder="Type your password" id="adminpassword" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;" type="password">
+        
+              <button class="btn btn-primary" id="adminbutton" style="margin-top: 1.5rem;">Login</button>
+              <button class="btn btn-outline-primary" id="adminlogoutbutton" style="margin-top: 1.5rem;">Logout</button>
+              <!-- <button class="btn btn-outline-primary" id="signup">Sign up</button> -->
+              <div id="responsetext">
+
               </div>
             </div>
-          </nav> 
-          <div id="loginpage" >
-            <div class="d-flex justify-content-center" style="margin: 5%;">
-              <div class="bg-white" style="display: inline-block; padding: 4rem; border-radius: 0.9rem; padding-bottom: 5rem; border: 1px solid black">
-                <h4 style="text-align: center; padding-bottom: 2rem;">Admin Login</h2>
-                <div class="d-flex flex-column">
-                  
-                  <p style="padding: 0rem; margin: 0rem;">Email</p>
-                  <input placeholder="Type your username" id="emailusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;">
-                  
-                  <!-- <p style="padding: 0rem; margin: 0rem;">Username</p>
-                  <input placeholder="Type your username" id="adminusername" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;"> -->
+        </div>
+      </div>
+    </div>
+    <!-- <div style="width: 100%; height: 3.8rem;" id="buffer">
+      <p></p>
+    </div> -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+          <ul class="navbar-nav ml-auto">
+              <span class="navbar-text">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              <span class="navbar-text" id="username">
+              </span>
+          </ul>
+        </div>
+      </div>
+    </nav>  -->
+    <div id="page">
+      <div class="hamburger-menu">
+        <input id="menuToggle" type="checkbox" />
+        <label class="menuBtn" for="menuToggle">
+          <span></span>
+        </label>
     
-                  <p style="padding: 0rem; margin: 0rem; margin-top: 1rem;">Password</p>
-                  <input placeholder="Type your password" id="adminpassword" style="padding: 0.5rem; border: none; border-bottom: 1px solid black;" type="password">
-            
-                  <button class="btn btn-primary" id="adminbutton" style="margin-top: 1.5rem;">Login</button>
-                  <button class="btn btn-outline-primary" id="adminlogoutbutton" style="margin-top: 1.5rem;">Logout</button>
-                  <!-- <button class="btn btn-outline-primary" id="signup">Sign up</button> -->
-                  <div id="responsetext">
-    
+        <ul class="menuBox">
+          <li><a class="menuItem" onclick="changepage('shoppingListCont')">Shopping list</a></li>
+          <li><a class="menuItem" onclick="changepage('editOrdersCont')">Edit Orders</a></li>
+          <li><a class="menuItem" onclick="changepage('addOrderCont')">Add Order</a></li>
+          <li><a class="menuItem" onclick="changepage('editIListsCont')">Edit Recipe</a></li>
+          <li><a class="menuItem" onclick="changepage('editIngredientsCont')">Edit Ingredients</a></li>
+          <li><a class="menuItem" id="return" href="../index.html">Logout</a></li>
+          <li><a class="nav-link" id="adminnavlogin"></a></li>
+        </ul>
+      </div>
+      <div id="maincontent">
+        <div id="shoppingListCont">
+          <h1>Shopping List</h1>
+          <select id="filterList">
+            <option value="" disabled selected>Select the filter</option>
+            <option value="">All</option>
+            <option value="uid">Name</option>
+            <option value="pracDate">Date</option>
+            <option value="classCode">Class Code</option>
+          </select>
+            <ul id="shoppingList">
+
+            </ul>
+        </div>
+        <!-- <div id="studentOrdersCont">
+        </div> -->
+        <div id="editOrdersCont">
+          <p>c</p>
+        </div>
+        <div id="addOrderCont">
+          <div class = "enterbox">
+            <h5>Add Order From List</h5>
+            <span>Selected List:</span>
+            <select id = "ingredientListDropdown"></select>
+            <span>Number of orders:</span>
+            <input id="orderNum" type = "number"></input>
+            <span>Date Required:</span>
+            <input id="pracDate" type = "date"></input>
+            <br></br>
+            <button onclick="addOrderFromList()">Place Order</button>
+          </div>
+        </div>
+        <div id="editIListsCont">
+          <h1>Ingredient lists</h1>
+          <div class = "rflex">
+            <div class = "cflex">
+                <div id="addIngListBox" class = "enterBox">
+                  <div class = "cflex">
+                    Ingredient:<select id = "ingListDropdown">
+
+                    </select>
+                    Amount:<input type = "number" id="ingListAmount">
+                    <button onclick="AddToIngredientList()">Add Ingredient to List</button>
                   </div>
                 </div>
+                <div id="currentList" class="enterBox">
+                  <h5>Current List:</h5>
+                  Name:<input id="ingListName"></input>
+                  <table class = "noborder" id="ingListCont"></table>
+                  <button onclick="AddIngredientList()">Add List</button>
+                </div>
+            </div>
+            <div id = "fullIngListCont" class = "cflex">
             </div>
           </div>
         </div>
-        <div id="page">
-          <div class="sidebar" width = 100px>
-            <br></br>
-            <button class="sidebutton" onclick="changepage('shoppingListCont')">Shopping list</button>
-            <!-- <button class="sidebutton" onclick="changepage('studentOrdersCont')">Student Orders</button> -->
-            <button class="sidebutton" onclick="changepage('editOrdersCont')">Edit Orders</button>
-            <button class="sidebutton" onclick="changepage('addOrderCont')">Add Order</button>
-            <button class="sidebutton" onclick="changepage('editIListsCont')">Edit Ingredient Lists</button>
-            <button class="sidebutton" onclick="changepage('editIngredientsCont')">Edit Ingredients</button>
-          </div>
-          <div id = maincontent>
-            <div id="shoppingListCont">
-              <select id="filterList">
-                <option value="" disabled selected>Select the filter</option>
-                <option value="filter-all">All</option>
-                <option value="filter-name">Name</option>
-                <option value="filter-date">Date</option>
-                <option value="filter-code">Class Code</option>
+        <div id="editIngredientsCont">
+          <div class = "rflex">
+            <div class="cflex">
+              <h1>Ingredients</h1>
+              <table id="ingredientTable">
+                <tr><th>Name</th><th>Category</th><th>Measurement</th></tr>
+              </table>
+            </div>
+            <div id="addIngBox" class = "cflex enterBox">
+              Name:<input id = "ingName"></input>
+              Category:<select id = "ingCat">
+              <option>Meat</option>
+              <option>Fish</option>
+              <option>Seafood</option>
+              <option value="Dairy & Eggs">Dairy & Eggs</option>
+              <option value="Fresh Vegetables">Fresh Vegetables</option>
+              <option value="Fresh Fruit">Fresh Fruit</option>
+              <option value = "Fresh Herbs/Spices">Fresh Herbs/Spices</option>
+              <option value = "Dried Herbs/Spices">Dried Herbs/Spices</option>
+              <option value = "Fresh Bread">Fresh Bread</option>
+              <option>Groceries</option>
+              <option value = "Frozen Foods">Frozen Foods</option>
+              <option>Equipment</option>
+              <option>Misc.</option>
+            </select>
+              Measurment:<select id = "ingMtype">
+                <option>count</option>
+                <option>volume</option>
+                <option>weight</option>
               </select>
-                <ul id="shoppingList">
-
-                </ul>
-            </div>
-            <!-- <div id="studentOrdersCont">
-            </div> -->
-            <div id="editOrdersCont">
-              <p>c</p>
-            </div>
-            <div id="addOrderCont">
-              <div class = "enterbox">
-                <h5>Add Order From List</h5>
-                <span>Selected List:</span>
-                <select id = "ingredientListDropdown"></select>
-                <span>Number of orders:</span>
-                <input id="orderNum" type = "number"></input>
-                <span>Date Required:</span>
-                <input id="pracDate" type = "date"></input>
-                <br></br>
-                <button onclick="addOrderFromList()">Place Order</button>
-              </div>
-            </div>
-            <div id="editIListsCont">
-              <h1>Ingredient lists</h1>
-              <div class = "rflex">
-                <div class = "cflex">
-                    <div id="addIngListBox" class = "enterBox">
-                      <div class = "cflex">
-                        Ingredient:<select id = "ingListDropdown">
-
-                        </select>
-                        Amount:<input type = "number" id="ingListAmount">
-                        <button onclick="AddToIngredientList()">Add Ingredient to List</button>
-                      </div>
-                    </div>
-                    <div id="currentList" class="enterBox">
-                      <h5>Current List:</h5>
-                      Name:<input id="ingListName"></input>
-                      <table class = "noborder" id="ingListCont"></table>
-                      <button onclick="AddIngredientList()">Add List</button>
-                    </div>
-                </div>
-                <div id = "fullIngListCont" class = "cflex">
-                </div>
-              </div>
-            </div>
-            <div id="editIngredientsCont">
-              <div class = "rflex">
-                <div class="cflex">
-                  <h1>Ingredients</h1>
-                  <table id="ingredientTable">
-                    <tr><th>Name</th><th>Category</th><th>Measurement</th></tr>
-                  </table>
-                </div>
-                <div id="addIngBox" class = "cflex enterBox">
-                  Name:<input id = "ingName"></input>
-                  Category:<select id = "ingCat">
-                  <option>Meat</option>
-                  <option>Fish</option>
-                  <option>Seafood</option>
-                  <option value="Dairy & Eggs">Dairy & Eggs</option>
-                  <option value="Fresh Vegetables">Fresh Vegetables</option>
-                  <option value="Fresh Fruit">Fresh Fruit</option>
-                  <option value = "Fresh Herbs/Spices">Fresh Herbs/Spices</option>
-                  <option value = "Dried Herbs/Spices">Dried Herbs/Spices</option>
-                  <option value = "Fresh Bread">Fresh Bread</option>
-                  <option>Groceries</option>
-                  <option value = "Frozen Foods">Frozen Foods</option>
-                  <option>Equipment</option>
-                  <option>Misc.</option>
-                </select>
-                  Measurment:<select id = "ingMtype">
-                    <option>count</option>
-                    <option>volume</option>
-                    <option>weight</option>
-                  </select>
-                  <button onclick="AddIngredient()">Add Ingredient</button>
-                </div>
-              </div>
-              
+              <button onclick="AddIngredient()">Add Ingredient</button>
             </div>
           </div>
-          <div id = "rightcontent">
-
-          </div>
+          
         </div>
-        <script src="adminLogin.js"></script>
+      </div>
+    </div>
+    <script src="adminLogin.js"></script>
     </body>
 </html>

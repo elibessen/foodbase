@@ -31,6 +31,7 @@ var OrderAmount;
 var allOrders = [];
 var studentOrders = [];
 var allStudentsOrders = [];
+var allUID = [];
 //values for all orders
 
 function getAmountUnit(ingred)
@@ -94,13 +95,22 @@ function adminOnload()
    updateIngredientLists();
 }
 
-
 //changes the content of maincontent
 function changepage(newpage)
 {
-
    pagarray[currentpage].style.display = "none";
    currentpage = newpage;
    pagarray[currentpage].style.display = "block";
 }
 
+$(document).ready(function() {
+   $("#menuToggle").change(function() {
+      if(this.checked){
+         $("#page").addClass("moveright")
+         console.log("Checked");
+      }else{
+         $("#page").removeClass("moveright")
+         console.log("Not checked");
+      }
+   })
+})

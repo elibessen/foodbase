@@ -1,134 +1,187 @@
-
-#page
-{
-    display:none;
-    /*display: flex;*/
-    flex-direction: row;
-    align-items: left;
-    justify-content: left;
-    height: 92.55%;
-    width: 100%;
-}
-.sidebar
-{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    width: 250px;
-    background-color: lightgray;
-    height: 100%;
-    
-
-
-}
-.sidebutton
-{
-    border-width: 2px;
-    width: 250px;
-    height: 75px;
-    font-size: larger;
-}
-#maincontent
-{
-    width: 67%;
-    height: 100%;
-    overflow:auto
-}
-#rightcontent
-{
-    background-color: lightgray;
-    width: 200px;
-    height: 100%
-}
-#shoppingListCont
-{
-    display:block;
-}
-#studentOrdersCont
-{
-    display:none;
-}
-#editOrdersCont
-{
-    display:none;
-}
-#addOrderCont
-{
-    display:none;
-}
-#editIListsCont
-{
-    display:none;
-}
-    #addIngListBox
-    {
-        margin-bottom:0px;
-        display:flex;
-    }
-
-#editIngredientsCont
-{
-    display:none;
+#menuToggle {
+  opacity: 0;
 }
 
-.enterBox
-{
-    border-style:solid;
-    border-color: black;
-    margin:10px;
-    padding: 10px;
-    width: min-content;
-    height: min-content;
-
-}
-div.cflex
-{
-	display:flex;
-	flex-direction:column;
-}
-div.rflex
-{
-	display:flex;
-	flex-direction:row;
-}
-div.flexcenter
-{
-	align-items: center;
-    	justify-content: center;
-}
-td,th
-{
-	border-style:solid;
-	border-width:2px;
-	border-color:black;
-}
-table
-{
-	border-collapse:collapse;
-}
-.delicon
-{
-    width: 20px;
-    height:20px;
-}
-.deltable
-{
-    border-right: none;
-    border-top: none;
-    border-bottom: none;
+#page {
+  transition: margin-left 0.5s;
+  padding: 2rem;
 }
 
-.ingListContainer
-{
-    padding: 10px;
-    margin: 10px;
-    border: 2px;
-    border-style: dashed;
-    border-color: black;
+#menuToggle:checked + .menuBtn > span {
+  transform: rotate(45deg);
 }
 
-.noborder
-{
-    border-style: none;
+#menuToggle:checked + .menuBtn > span::before {
+  top: 0;
+  transform: rotate(0deg);
 }
+
+#menuToggle:checked + .menuBtn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+#menuToggle:checked ~ .menuBox {
+  left: 0;
+}
+
+.menuBtn {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.menuBtn > span,
+.menuBtn > span::before,
+.menuBtn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #000000;
+  transition-duration: 0.25s;
+}
+
+.menuBtn > span::before {
+  content: "";
+  top: -8px;
+}
+
+.menuBtn > span::after {
+  content: "";
+  top: 8px;
+}
+
+.menuBox {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #ECEFF1;
+  transition-duration: 0.25s;
+}
+
+.menuItem {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: 0.25s;
+}
+
+.menuItem:hover {
+  background-color: #CFD8DC;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+#page {
+  display: none;
+  /*display: flex;*/
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  height: 92.55%;
+  width: 100%;
+}
+
+#page {
+  transition: margin-left 0.5s;
+  padding: 1.5rem;
+}
+
+#shoppingListCont {
+  display: block;
+}
+
+#studentOrdersCont {
+  display: none;
+}
+
+#editOrdersCont {
+  display: none;
+}
+
+#addOrderCont {
+  display: none;
+}
+
+#editIListsCont {
+  display: none;
+}
+
+#addIngListBox {
+  margin-bottom: 0px;
+  display: flex;
+}
+
+#editIngredientsCont {
+  display: none;
+}
+
+.enterBox {
+  border-style: solid;
+  border-color: black;
+  margin: 10px;
+  padding: 10px;
+  width: min-content;
+  height: min-content;
+}
+
+td, th {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.delicon {
+  width: 20px;
+  height: 20px;
+}
+
+.deltable {
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.ingListContainer {
+  padding: 10px;
+  margin: 10px;
+  border: 2px;
+  border-style: dashed;
+  border-color: black;
+}
+
+.noborder {
+  border-style: none;
+}
+
+#buffer {
+  background-color: #f1f1f1;
+  margin-top: 0rem;
+}
+
+.moveright {
+  margin-left: 18rem;
+}
+
+/*# sourceMappingURL=admin.css.map */

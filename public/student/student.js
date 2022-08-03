@@ -132,7 +132,7 @@ function removeFromCart(element){
     console.log("id", $(element).parent().attr('id'))
     // This is why the ingredientNum from addToCart() is important
     // The app knows which ingredient to remove from the array 
-    items.splice($(element).attr('id'), 1);
+    items.splice($(element).parent().attr('id'), 1);
     // Emptys the div with all the ingredients
     $("#shopping-items").empty();
     // Resets the ingredientNum

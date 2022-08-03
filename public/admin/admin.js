@@ -58,7 +58,6 @@ function removeElementsByClass(className){
 function adminOnload()
 {
    var page = document.getElementById("page");
-   console.log(page.style.display)
    page.style.display = "flex";
 
    //adding the elements that fill maincontent to the pagarray
@@ -95,6 +94,7 @@ function adminOnload()
    getOrderAmount();
    updateIngredients();
    updateIngredientLists();
+   getUID();
 }
 
 //changes the content of maincontent

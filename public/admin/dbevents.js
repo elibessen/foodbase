@@ -32,16 +32,14 @@ function getOrderAmount(){
         }
         
         getUID();
-        // getStudentOrder();
     })
 }
 
 $(document).on('change', '#filterList', function() {
-    console.log(this.value);
-    getUID(this.value)
+    writeShoppingList(this.value);
 })
 
-async function getUID(filter){
+async function getUID(){
     allUID.length = 0;
     $("#shoppingList").empty();
     for(var i=0; i < allOrders.length; i++){
@@ -50,15 +48,12 @@ async function getUID(filter){
             allUID.push(array);
         })
     }
-    console.log(allUID);
-    getOrders(allUID, filter);
+    getOrders(allUID);
 }
 
-async function getOrders(allUID, filter){
+async function getOrders(allUID){
     var array = [];
-    // var object ={
-
-    // }
+    var arrayCopy = [];
     for(var i=0; i<allUID.length; i++){
         // array.length = 0;
         await db.collection('orders').doc(allUID[i][0]).collection('ingredients').get().then((snapshot) => {
@@ -72,17 +67,100 @@ async function getOrders(allUID, filter){
                         pracDate: `${allUID[i][3]}` 
                     }
                 }
-                // $("#shoppingList").append("<h2>" + allUID[i][0] + "</h2>")
-                // $("#shoppingList").append("<li>" + doc.id + " " + doc.data().quantity + "</li>");
+                db.collection('students').where("uid", "==", allUID[i][1]).get().then((snapshot) => {
+                    snapshot.forEach((doc) => {
+                        object.information.name = `${doc.data().username}`
+                    })
+                })
+                db.collection('users').where("uid", "==", allUID[i][1]).get().then((snapshot) => {
+                    snapshot.forEach((doc) => {
+                        object.information.name = `${doc.data().username}`
+                    })
+                })
             })
-            console.log(array);
-            object.ingredients = array;
+            arrayCopy = [...array];
+            object.ingredients = arrayCopy;
             allStudentsOrders.push(object);
         })
         array.length = 0;
-        console.log(allStudentsOrders);
+    }
+    writeShoppingList('');
+}
+
+function writeShoppingList(filter){
+    $("#shoppingList").empty();
+    switch(filter){
+        case 'uid'  :
+            filterByName();
+            break;
+        case 'pracDate':
+            filterByDate();
+            break;
+        case 'classCode':
+            filterByClass();
+            break;
+        default:
+            filterByAll();
+            return 'all';
     }
 }
+
+function filterByName(){
+    $("#shoppingList").empty();
+    var object = {
+
+    }
+    for(var i=0; i<allStudentsOrders.length; i++){
+        $("#shoppingList").append("<h3>" + allStudentsOrders[i].information.name + ":" + "</h3>");
+        for(var j=0; j<allStudentsOrders[i].ingredients.length; j++){
+            $("#shoppingList").append("<li>" + allStudentsOrders[i].ingredients[j][0]);
+        }
+    }
+    // Do stuff
+}
+
+function filterByDate(){
+    $("#shoppingList").empty();
+}
+
+function filterByClass(){
+    $("#shoppingList").empty();
+}
+
+function filterByAll(){
+    $("#shoppingList").empty();
+    for(var i=0; i<allStudentsOrders.length; i++){
+        for(var j=0; j<allStudentsOrders[i].ingredients.length; j++){
+            function checkQuantity(){
+                switch(allStudentsOrders[i].ingredients[j][1].measurementType){
+                    case 'weight':
+                        return 'grams';
+                    case 'count':
+                        return 'x'
+                    case 'volume':
+                        return 'mL'
+                    default:
+                        return ''
+                }
+            }
+            var quantityType = checkQuantity();
+            $("#shoppingList").append("<li>" + allStudentsOrders[i].ingredients[j][0] + " " + allStudentsOrders[i].ingredients[j][1].quantity + quantityType + "</li>");
+        }
+    }
+}
+
+// function checkFilter(filter){
+//     switch(filter){
+//         case 'uid':
+//             return 'uid';
+//         case 'pracDate':
+//             return 'pracDate';
+//         case 'classCode':
+//             return 'classCode';
+//         default:
+//             return 'all';
+//     }
+// }
 
 function updateIngredientLists()
 {
@@ -106,5 +184,5 @@ function updateIngredientLists()
       displayIngredientLists();
       updateIngredientListSelect();
     })
-    console.log("ingredient lists updated");
+    console.log("Ingredient lists updated!");
 }

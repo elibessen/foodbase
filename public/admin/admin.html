@@ -24,7 +24,19 @@
         <script src="dbevents.js"></script>
         <script src="admin.js"></script>
     </head>
-    <body>   
+    <body> 
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav ml-auto" style="padding-left: 3rem;">
+                <span class="navbar-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="navbar-text" id="username">
+                </span>
+            </ul>
+          </div>
+        </div>
+      </nav>   
       <div id="loginpage" >
         <div class="d-flex justify-content-center" style="margin: 5%;">
           <div class="bg-white" style="display: inline-block; padding: 4rem; border-radius: 0.9rem; padding-bottom: 5rem; border: 1px solid black">
@@ -50,32 +62,16 @@
         </div>
       </div>
     </div>
-    <!-- <div style="width: 100%; height: 3.8rem;" id="buffer">
-      <p></p>
-    </div> -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-          <ul class="navbar-nav ml-auto">
-              <span class="navbar-text">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              </span>
-              <span class="navbar-text" id="username">
-              </span>
-          </ul>
-        </div>
-      </div>
-    </nav>  -->
     <div id="page">
       <div class="hamburger-menu">
         <input id="menuToggle" type="checkbox" />
         <label class="menuBtn" for="menuToggle">
           <span></span>
         </label>
-    
         <ul class="menuBox">
           <li><a class="menuItem" onclick="changepage('shoppingListCont')">Shopping list</a></li>
           <li><a class="menuItem" onclick="changepage('editOrdersCont')">Edit Orders</a></li>
-          <li><a class="menuItem" onclick="changepage('addOrderCont')">Add Order</a></li>
+          <li><a class="menuItem" onclick="changepage('addOrderCont')">Add Recipes</a></li>
           <li><a class="menuItem" onclick="changepage('editIListsCont')">Edit Recipe</a></li>
           <li><a class="menuItem" onclick="changepage('editIngredientsCont')">Edit Ingredients</a></li>
           <li><a class="menuItem" id="return" href="../index.html">Logout</a></li>
@@ -86,7 +82,7 @@
         <div id="shoppingListCont">
           <h1>Shopping List</h1>
           <select id="filterList">
-            <option value="" disabled selected>Select the filter</option>
+            <option value="" disabled selected>Select Filter</option>
             <option value="">All</option>
             <option value="uid">Name</option>
             <option value="pracDate">Date</option>
@@ -96,16 +92,17 @@
 
             </ul>
         </div>
-        <!-- <div id="studentOrdersCont">
-        </div> -->
+
         <div id="editOrdersCont">
           <p>c</p>
         </div>
+
         <div id="addOrderCont">
           <div class = "enterbox">
-            <h5>Add Order From List</h5>
-            <span>Selected List:</span>
+            <h5>Add preset orders</h5>
+            <span>Selected recipe:</span>
             <select id = "ingredientListDropdown"></select>
+            <br>
             <span>Number of orders:</span>
             <input id="orderNum" type = "number"></input>
             <span>Class Code</span>
@@ -113,66 +110,73 @@
             <span>Date Required:</span>
             <input id="pracDate" type = "date"></input>
             <br></br>
-            <button onclick="addOrderFromList()">Place Order</button>
+            <button onclick="addOrderFromList()" class="btn btn-primary">Place Order</button>
           </div>
         </div>
+
         <div id="editIListsCont">
-          <h1>Ingredient lists</h1>
-          <div class = "rflex">
-            <div class = "cflex">
-                <div id="addIngListBox" class = "enterBox">
-                  <div class = "cflex">
-                    Ingredient:<select id = "ingListDropdown">
-    </select>
-    Amount:<input type = "number" id="ingListAmount">
-    <button onclick="AddToIngredientList()">Add Ingredient to List</button>
-  </div>
-</div>
-<div id="currentList" class="enterBox">
-  <h5>Current List:</h5>
-  Name:<input id="ingListName"></input>
-  <table class = "noborder" id="ingListCont"></table>
-  <button onclick="AddIngredientList()">Add List</button>
-</div>
-</div>
-<div id = "fullIngListCont" class = "cflex">
-</div>
-</div>
+          <div class="d-flex flex-row">
+            <div class="d-flex flex-column">
+              <h1 style="display: block;">Ingredient lists</h1>
+              <div class="d-flex flex-column">
+                <div style="display: block;">
+                  <div id="addIngListBox" class="enterBox">
+                    <div class="cflex">
+                      Ingredient:<select id="ingListDropdown"></select>
+                      Amount:<input type="number" id="ingListAmount">
+                      <br>
+                      <button onclick="AddToIngredientList()" class="btn btn-primary">Add Ingredient to List</button>
+                    </div>
+                  </div>
+                  <div id="currentList" class="enterBox">
+                    <h5>Selected List:</h5>
+                    Name:<input id="ingListName"></input>
+                    <table class = "noborder" id="ingListCont" class="table table-striped"></table>
+                    <br>
+                    <button onclick="AddIngredientList()" class="btn btn-primary">Add List</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div id="fullIngListCont" class="d-flex flex-column"></div>
+            
+          </div>
         </div> 
-        <div id="editIngredientsCont">
-          <div class = "rflex">
+
+        <div id="editIngredientsCont" style="margin-left: 1rem;">
+          <div class="d-flex flex-row">
             <div class="cflex">
               <h1>Ingredients</h1>
-              <table id="ingredientTable">
-                <tr><th>Name</th><th>Category</th><th>Measurement</th></tr>
-              </table>
+                <table id="ingredientTable" class="table table-striped">
+                  <tr><th>Name</th><th>Category</th><th>Measurement</th></tr>
+                </table>
             </div>
-            <div id="addIngBox" class = "cflex enterBox">
-              Name:<input id = "ingName"></input>
-              Category:<select id = "ingCat">
+            <div id="addIngBox" class="d-flex flex-column justify-content-center enterBox" style="gap: 0.2rem; padding: 2rem 2rem;">
+              <h4>Add Ingredients</h4>
+              Name:<input id="ingName" style="padding: 0.3rem;"></input>
+              Category:<select id="ingCat" style="padding: 0.3rem;">
               <option>Meat</option>
               <option>Fish</option>
               <option>Seafood</option>
               <option value="Dairy & Eggs">Dairy & Eggs</option>
               <option value="Fresh Vegetables">Fresh Vegetables</option>
               <option value="Fresh Fruit">Fresh Fruit</option>
-              <option value = "Fresh Herbs/Spices">Fresh Herbs/Spices</option>
-              <option value = "Dried Herbs/Spices">Dried Herbs/Spices</option>
-              <option value = "Fresh Bread">Fresh Bread</option>
+              <option value="Fresh Herbs/Spices">Fresh Herbs/Spices</option>
+              <option value="Dried Herbs/Spices">Dried Herbs/Spices</option>
+              <option value="Fresh Bread">Fresh Bread</option>
               <option>Groceries</option>
-              <option value = "Frozen Foods">Frozen Foods</option>
+              <option value="Frozen Foods">Frozen Foods</option>
               <option>Equipment</option>
               <option>Misc.</option>
             </select>
-              Measurment:<select id = "ingMtype">
+              Measurment:<select id="ingMtype" style="padding: 0.3rem;">
                 <option>count</option>
                 <option>volume</option>
                 <option>weight</option>
               </select>
-              <button onclick="AddIngredient()">Add Ingredient</button>
+              <button onclick="AddIngredient()" class="btn btn-primary">Add Ingredient</button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

@@ -15,7 +15,6 @@ function makeIngredientTable()
       delico.classList.add("delicon");
       del.classList.add("deltable");
 
-
       delico.src = "../img/delete.png";//setting delete image
       delico.value=ingredients[i].ingredientName;//storing the ingredient name for use in
       delico.addEventListener('click', DeleteIngredient);//runs delete ingredient when delico is clicked

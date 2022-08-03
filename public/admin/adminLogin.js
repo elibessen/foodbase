@@ -53,7 +53,7 @@ btnSignIn.addEventListener('click', e => {
 
 
 function errorlogin(e){
-    console.log(e.message);
+    console.error(e.message);
     $("#loginerror").remove();
     $('#responsetext').append("<p id='loginerror' class='text-danger'> Wrong email/password </p>");
 }
@@ -62,20 +62,19 @@ function errorlogin(e){
 btnSignOut.addEventListener('click', e => {
     firebase.auth().signOut();
     location.reload();
-    console.log("Logged out");
+    console.warn("Logged out");
 });
 
 returnButton.addEventListener('click', e => {
     firebase.auth().signOut();
     location.reload();
-    console.log("Logged out");
+    console.warn("Logged out");
 });
 
 // Detect when auth state changes
 firebase.auth().onAuthStateChanged(firebaseUser => {
     // If signed in
-    if (firebaseUser) {
-        console.log(firebaseUser);   
+    if (firebaseUser) {  
         btnSignOut.classList.remove('hidden');
         btnSignIn.classList.add('hidden');
         $("#loginerror").remove();
@@ -84,23 +83,21 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
          // Check user exists in db
         users.doc(auth.currentUser.uid).get().then((doc) => {
             if (doc.exists) { // User exists
-                console.log("Document data:", doc.data());
                 btnSignOut.classList.remove('hidden');
                 fetchUsername();
                 adminOnload();
             } else { // Add user data to db
-                console.log("No such document!");
                 writeUserToDB();
             }
 
             loginpage.classList.add('hidden');
         }).catch((error) => { // Catch any errors
-            console.log("Error getting document:", error);
+            console.error("Error getting document:", error);
             $('#responsetext').append("<p id='loginerror' class='text-danger'> Error retrieving user </p>");
         });
 
     } else { // Confirm logout
-        console.log('not logged in.');
+        console.warn('Not logged in.');
         btnSignOut.classList.add('hidden')
         btnSignIn.classList.remove('hidden');
         loginpage.classList.remove('hidden');
@@ -132,7 +129,7 @@ function fetchUsername(){
         if(doc.exists) {
             username.innerHTML = doc.data().username.toUpperCase() + ', ADMIN'
         } else {
-            console.log("Username doesn't exist");
+            console.warn("Username doesn't exist");
             username.innerHTML = 'Hey, you do not exist'
         }
     })

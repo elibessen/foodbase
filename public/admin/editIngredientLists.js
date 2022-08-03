@@ -77,7 +77,6 @@ function makeCurrentIngredientList()
 
         //adding row to table
         ingListCont.appendChild(trow);
-
     }
 
 }
@@ -146,7 +145,8 @@ function displayIngredientLists()
         //set classes for ingContainer
         ingContainer.classList.add("rmIngList"); // class to mark removal 
         ingContainer.classList.add("ingListContainer");  //class for styling 
-        ingContainer.classList.add("cflex"); // make column flexbox
+        ingContainer.classList.add("d-flex"); // make column flexbox
+        ingContainer.classList.add("flex-column");
 
         let deletecolumn = document.createElement("div");
         deletecolumn.classList.add("rflex");

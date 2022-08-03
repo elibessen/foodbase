@@ -10,7 +10,6 @@ html, body{
 #page
 {
     display:none;
-    /*display: flex;*/
     flex-direction: row;
     align-items: left;
     justify-content: left;
@@ -53,13 +52,11 @@ html, body{
 }
 
 .enterBox{
-    border-style:solid;
-    border-color: black;
-    margin:10px;
-    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 2rem;
     width: min-content;
     height: min-content;
-
 }
 
 td,th{
@@ -102,4 +99,8 @@ table{
 
 .moveright{
     margin-left: 18rem;
+}
+
+#editIngredientsCont{
+    
 }

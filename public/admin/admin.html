@@ -121,7 +121,47 @@
                 <div id="addIngListBox" class = "enterBox">
                   <div class = "cflex">
                     Ingredient:<select id = "ingListDropdown">
-
+                      <div id = maincontent>
+                        <div id="shoppingListCont">
+                          <select id="filterList">
+                            <option value="" disabled selected>Select the filter</option>
+                            <option value="filter-all">All</option>
+                            <option value="filter-name">Name</option>
+                            <option value="filter-date">Date</option>
+                            <option value="filter-code">Class Code</option>
+                          </select>
+                            <ul id="shoppingList">
+            
+                            </ul>
+                        </div>
+                        <!-- <div id="studentOrdersCont">
+                        </div> -->
+                        <div id="editOrdersCont">
+                          <p>c</p>
+                        </div>
+                        <div id="addOrderCont">
+                          <h1>Ingredient Orders</h1>
+                          <div class = "enterbox">
+                            <h5>Add Order From List</h5>
+                            <span>Selected List:</span>
+                            <select id = "ingredientListDropdown"></select>
+                            <span>Number of orders:</span>
+                            <input id="listorderNum" type = "number"></input>
+                            <span>ClassCode:</span>
+                            <input id="listclassCode"></input>
+                            <span>Date Required:</span>
+                            <input id="listpracDate" type = "date"></input>
+                            <br></br>
+                            <button onclick="addOrderFromList()">Place Order</button>
+                          </div>
+                        </div>
+                        <div id="editIListsCont">
+                          <h1>Ingredient lists</h1>
+                          <div class = "rflex">
+                            <div class = "cflex">
+                                <div id="addIngListBox" class = "enterBox">
+                                  <div class = "cflex">
+                                    Ingredient:<select id = "ingListDropdown">
                     </select>
                     Amount:<input type = "number" id="ingListAmount">
                     <button onclick="AddToIngredientList()">Add Ingredient to List</button>

@@ -12,10 +12,12 @@ function updateIngredientListSelect()
 }
 async function addOrderFromList()
 {
+    if (!confirm(`Place Order?`)) return null;
     let list = dropdown_ingredientLists.value;
     let multiplier  = input_orderNum.value;
     let pracDate = input_pracDate.value;
     let listData;
+    let classCode = input_classCode.value;
     let user;
     await users.doc(auth.currentUser.uid).get().then((doc) => {
         if(doc.exists) {
@@ -32,7 +34,7 @@ async function addOrderFromList()
     console.log(`${list} x${multiplier} ${pracDate} ${user} ${uid}`);
 
     db.collection("orders").doc("Order" + (OrderAmount)).set({
-        classCode: "Teacher",
+        classCode: classCode,
         pracDate: pracDate,
         pracTitle: `${list} x${multiplier}`,
         uid:uid
@@ -46,7 +48,6 @@ async function addOrderFromList()
                 break;
             }
         }
-        console.log(listData);
         for (i = 0; i < listData.information.ingredients.length; i++){
             db.collection('orders').doc("Order" + (OrderAmount)).collection('ingredients').doc(listData.information.ingredients[i].ingredientName).set({
                 category: listData.information.ingredients[i].information.category,
@@ -55,15 +56,18 @@ async function addOrderFromList()
             }).then(() =>{
                 console.log("Ingredient Successfully added");
             }).catch(() => {
-                console.error("Error writing ingredient: ", error)
+                alert("An Error Occurred, Order Was Not Placed");
+                console.error("Error writing ingredient: ", error);
             });
         }
         db.collection("orders").doc("OrderAmount").set({
             num: OrderAmount
          });
         console.log("Document Successfully Written!");
+        alert("Order Has Been Placed");
      })
      .catch((error) => {
+        alert("An Error Occurred, Order Was Not Placed");
         console.error("Error writing document: ", error);
      });
     

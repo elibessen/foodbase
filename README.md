@@ -1,4 +1,4 @@
-<h1 align="center">Food ordering system</h1>
+<h1 align="center">Foodbase</h1>
 <h3 align="center">A self-hostable system for Food Tech classes using Firebase Auth & Firestore</h3>
 
 <p align="center">
